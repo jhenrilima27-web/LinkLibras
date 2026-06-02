@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="styleJoao.css">
 </head>
 <body class="body-login">
 
@@ -16,7 +16,7 @@
         <img class="casa_inicial" src="img/Home.svg">
     </a>
 
-    <img src="img/logo_png.png" class="logo_branca">
+    <img src="img/LogoMãospng.png" class="logo_branca">
 
     <div class="login-container">
         <h1>Login</h1><br>
@@ -27,6 +27,16 @@
 
             <label for="senha"><strong>Senha:</strong></label><br>
             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required><br><br>
+
+            <h4>Tipo de perfil:</h4>
+
+            <div class="grupo-radio">
+                <input type="radio" id="usuario" name="perfil" value="usuario" required>
+                <label for="usuario" class="opcao-radio">Usuário</label>
+
+                <input type="radio" id="interprete" name="perfil" value="interprete">
+                <label for="interprete" class="opcao-radio">Intérprete</label>
+            </div>
 
         <div class="botoes">
             <a href="Pagina_cadastro.html">
