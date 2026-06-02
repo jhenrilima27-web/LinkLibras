@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar os produtos</title>
+    <link rel="stylesheet" href="styleJoao.css">
+</head>
+<body class="body_interpretes">
+
+    <a href="Pagina_principal.html">
+        <img class="voltar" src="img/Arrow_left.svg">
+    </a>
+
+    <a href="Pagina_principal.html">
+        <img class="casa_inicial" src="img/Home.svg">
+    </a>
+    
+    <img src="img/LogoMãospng.png" class="logo_branca2">
+
+    <div class="container_cadastro_interpretes">
+
+        <h1>Cadastro de Produtos</h1>
+
+        <form id="formInterprete">
+
+            <!-- NOME -->
+            <div class="grupo">
+
+                <label for="nome">
+                    Nome do Interprete
+                </label>
+
+                <input type="text"
+                       id="nome"
+                       name="nome"
+                       required
+                       minlength="3"
+                       maxlength="100"
+                       placeholder="Digite o nome do Interprete">
+
+            </div>
+
+            <!-- PREÇO -->
+            <div class="grupo">
+
+                <label for="preco">
+                    Preço
+                </label>
+
+                <input type="number"
+                       id="preco"
+                       name="preco"
+                       required
+                       min="0"
+                       step="0.01"
+                       placeholder="0.00">
+
+            </div>
+
+            <!-- IMAGEM -->
+            <div class="grupo">
+
+                <label for="imagem">
+                    sua foto
+                </label>
+
+                <input type="url"
+                       id="imagem"
+                       name="imagem"
+					   value ="https://picsum.photos/300/200?random=1"
+                       required
+                       placeholder="https://picsum.photos/300/200?random=1">
+
+            </div>
+
+            <!-- BOTÃO -->
+            <button class="button1" type="submit">
+                Cadastrar Interprete
+            </button>
+
+        </form>
+
+    </div>
+
+<script>
+	
+document.getElementById("formInterprete").addEventListener("submit", cadastrarProduto);
+
+
+async function cadastrarProduto(evento) {
+
+    // EVITA RECARREGAR A PÁGINA
+    evento.preventDefault();
+/*
+    // CAPTURA DADOS
+    const id = document.getElementById("id").value;
+    const nome = document.getElementById("nome").value;
+    const preco = document.getElementById("preco").value;
+    const imagem = document.getElementById("imagem").value;
+    // MONTA OBJETO
+    const produto = {
+        id: id,
+        nome: nome,
+        preco: preco,
+        imagem: imagem
+    };
+*/
+const form = document.getElementById("formInterprete"); // CAPTURA O FORMULÁRIO
+const dadosForm = new FormData(form); // CAPTURA TODOS OS CAMPOS
+const produto = Object.fromEntries( dadosForm.entries()  ); // CONVERTE PARA OBJETO
+console.log(produto); // EXIBE OBJETO
+
+    try {
+        // ENVIA PARA API PHP
+        const resposta = await fetch("produtos_cadastrar.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(produto)
+        });
+
+		debugger;
+	
+        // CONVERTE RESPOSTA
+        const dados = await resposta.json();
+
+        // EXIBE RETORNO
+        alert(dados.mensagem);
+
+    } catch(erro) {
+
+        console.error(erro);
+
+        alert("Erro ao cadastrar produto");
+    }
+}
+
+</script>
+</body>
+</html>
