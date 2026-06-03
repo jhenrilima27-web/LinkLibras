@@ -151,17 +151,15 @@ h2 {
 }
 
 .avaliacoes_header {
+  margin-top: 15px;
   display: flex;
-
   align-items: center;
   justify-content: space-between;
 }
 
 .avaliacoes_header_info {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
 }
 
@@ -202,6 +200,11 @@ h2 {
   padding: 15px;
 
   border-radius: 10px;
+}
+
+.card_avaliacao > div {
+  width: 100%;
+  min-width: 0; /* evita overflow do texto */
 }
 
 .card_avaliacao img {
