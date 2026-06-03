@@ -1,0 +1,433 @@
+:root {
+  --azul-escuro: #0e3a99;
+  --azul-claro: #06cafe;
+
+  --cinza-escuro: #636363;
+  --cinza-medio: #878787;
+  --cinza-claro: #e7e7e7;
+
+  --verde: #13c734;
+  --amarelo: #c79304;
+
+  --branco: #ffffff;
+}
+
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--cinza-escuro);
+}
+
+h2 {
+  color: var(--azul-escuro);
+}
+
+/* Header */
+
+.header_perfil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 7px 15px;
+
+  border-bottom: 1px solid var(--cinza-claro);
+}
+
+.btn_voltar_perfil {
+  text-decoration: none;
+
+  color: var(--azul-escuro);
+  background-color: var(--cinza-claro);
+
+  padding: 6px;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn_voltar_perfil:hover {
+  background-color: var(--azul-claro);
+}
+
+.logo_perfil {
+  width: 80px;
+}
+
+/* Layout */
+
+.container_perfil {
+  display: flex;
+  gap: 20px;
+
+  padding: 20px;
+
+  align-items: flex-start;
+}
+
+.perfil_descricao,
+.perfil_info {
+  min-height: 100vh;
+}
+
+.perfil_descricao {
+  padding: 15px;
+  flex: 1;
+  min-width: 0; /* evita overflow em flex */
+}
+
+.dados_perfil,
+.dados_perfil div {
+  display: flex;
+  flex-direction: column;
+}
+
+.dados_perfil {
+  gap: 20px;
+}
+
+.dados_perfil div {
+  gap: 10px;
+}
+
+/* Lista habilidades */
+
+.habilidades_lista {
+  padding-left: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+/* Chips */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap; /* quebra linha em telas pequenas */
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.chip {
+  background-color: var(--azul-escuro);
+
+  color: var(--branco);
+
+  padding: 8px 16px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  cursor: default;
+
+  transition: 0.25s;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.chip:hover {
+  background-color: var(--azul-claro);
+  color: var(--azul-escuro);
+}
+
+/* Avaliações */
+
+.avaliacoes {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.avaliacoes_header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avaliacoes_header_info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.media_avaliacoes {
+  font-size: 18px;
+  font-weight: bold;
+
+  color: var(--cinza-escuro);
+}
+
+.num_avaliacoes {
+  font-size: 14px;
+  color: var(--cinza-medio);
+}
+
+.star {
+  color: var(--amarelo);
+}
+
+/* Cards */
+
+.container_avaliacoes {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.card_avaliacao {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  background-color: var(--cinza-claro);
+
+  padding: 15px;
+
+  border-radius: 10px;
+}
+
+.card_avaliacao img {
+  width: 70px;
+  height: 70px; /* garante proporção circular */
+  object-fit: cover;
+  flex-shrink: 0; /* impede que a imagem encolha */
+
+  border-radius: 50%;
+}
+
+.header_card_avaliacao {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.nome_avaliacao {
+  font-weight: bold;
+
+  color: var(--azul-escuro);
+}
+
+.card_avaliacao p {
+  padding: 5px;
+}
+
+/* Perfil lateral */
+
+.perfil_info {
+  border-left: 1px solid var(--cinza-claro);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  padding: 15px 15px 15px 30px;
+
+  width: 350px;
+  flex-shrink: 0; /* impede que encolha antes do breakpoint */
+}
+
+.foto_usuario_container {
+  display: flex;
+  justify-content: center;
+}
+
+.foto_usuario_container img {
+  width: 200px;
+  height: 200px; /* garante proporção */
+  object-fit: cover;
+
+  border-radius: 15px;
+}
+
+.dados_usuario {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+
+  gap: 10px;
+}
+
+.nome {
+  font-size: 24px;
+
+  font-weight: bold;
+
+  color: var(--azul-escuro);
+}
+
+.endereco_1,
+.endereco_2 {
+  color: var(--cinza-medio);
+}
+
+/* Preço */
+
+.preco {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 12px;
+
+  background-color: var(--azul-escuro);
+
+  color: white;
+
+  border-radius: 8px;
+}
+
+/* Botão */
+
+.btn_contato {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  background-color: var(--verde);
+
+  color: white;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  width: 100%;
+  font-size: 16px;
+}
+
+.btn_contato:hover {
+  filter: brightness(0.9);
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVIDADE
+───────────────────────────────────────── */
+
+/* Tablet: sidebar fica menor */
+@media (max-width: 900px) {
+  .perfil_info {
+    width: 280px;
+    padding: 15px 15px 15px 20px;
+  }
+
+  .foto_usuario_container img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Mobile: layout em coluna única */
+@media (max-width: 650px) {
+  .container_perfil {
+    flex-direction: column-reverse; /* info do usuário aparece primeiro */
+    padding: 15px;
+    gap: 0;
+  }
+
+  .perfil_descricao,
+  .perfil_info {
+    min-height: unset;
+    width: 100%;
+  }
+
+  .perfil_info {
+    border-left: none;
+    border-bottom: 1px solid var(--cinza-claro);
+    padding: 15px 15px 25px 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  /* Foto + dados ficam lado a lado no mobile */
+  .foto_usuario_container {
+    flex-shrink: 0;
+  }
+
+  .foto_usuario_container img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+  }
+
+  .dados_usuario {
+    text-align: left;
+    justify-content: center;
+  }
+
+  /* Preço e botão ocupam a linha toda */
+  .preco,
+  .btn_contato {
+    flex-basis: 100%;
+  }
+
+  .perfil_descricao {
+    padding: 20px 10px;
+  }
+
+  /* Cards de avaliação em coluna no mobile pequeno */
+  .card_avaliacao {
+    align-items: flex-start;
+  }
+
+  .card_avaliacao img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nome {
+    font-size: 20px;
+  }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 380px) {
+  .perfil_info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dados_usuario {
+    text-align: center;
+  }
+
+  .chip {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
