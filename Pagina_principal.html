@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Brinquedos</title>
+    <link rel="stylesheet" href="styleJoao.css">
+</head>
+
+<body>
+
+<div class="container_principal">
+
+    <header class="header">
+        <div>
+            <img src="img/LogoMãosLetraspgn.png" class="logo_principal">
+        </div>
+        <div>
+            <img src="img/LogoLetraspng.png" class="letrasiniciais">
+        </div>
+
+        <div class="headerDireita">
+            <a href="Pagina_cadastro.html">
+                <button class="button2">Se cadastrar</button>
+            </a> 
+
+            <a href="Pagina_Login.html">
+            <button class="button2">Login</button>
+            </a>
+
+            <a href="Pagina_carrinho.html">
+                <img src="img/IconUser.svg" class="IconUser">
+            </a>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <h1>Opções</h1><br>
+        
+        <a href="Pagina_carrinho.html">
+            <button class="button1">Acessar o carrinho</button>  
+        </a><br><br>
+
+        <a href="Pagina_cadastro_produtos.html">
+            <button class="button1">Cadastrar produtos</button>  
+        </a><br><br>
+
+        <a href="Pagina_cadastro_produtos.html">
+            <button class="button1">Ser um vendedor</button>  
+        </a>
+
+    </aside>
+
+    <main class="products" id="listaProdutos">
+
+
+    </main>
+
+    <footer class="footer">
+        <p3><strong>Contatos:</strong></p3>
+            <p>Email: angelbrinquedos@gmail.com</p>
+            <p>Instagram: angel_brinquedos</p>
+    </footer>
+
+</div>
+<script>
+async function abrirCadastro() {
+
+    // 1. BUSCA O HTML
+    const resposta = await fetch('Pagina_casdastro_produtos.html');
+    // 2. CONVERTE PARA TEXTO
+    const html = await resposta.text();
+    // 3. SELECIONA O CONTAINER
+    const container = document.getElementById('listaProdutos');
+    // 4. INSERE O HTML
+    container.innerHTML = html;
+    // 5. PEGA A TAG SCRIPT
+    const scriptOriginal = container.querySelector("script");
+    // 6. VERIFICA SE EXISTE SCRIPT
+    if (scriptOriginal) {
+
+        // 7. CRIA NOVA TAG SCRIPT
+        const novoScript = document.createElement("script");
+
+        // 8. COPIA O CÓDIGO JAVASCRIPT
+        novoScript.textContent = scriptOriginal.textContent;
+
+        // 9. ADICIONA NO BODY , ADICIONA NO DOM E EXECUTA O SCRIPT
+        document.body.appendChild(novoScript);
+
+        // 10. REMOVE SCRIPT ANTIGO
+        scriptOriginal.remove();
+    }
+}
+async function carregarProdutos() {
+
+    // 1. Buscar o arquivo JSON
+    const resposta = await fetch('produtos_pdo.php');
+
+    // 2. Converter para objeto JavaScript
+    const produtos = await resposta.json();
+
+    // 3. Selecionar onde vai mostrar
+    const container = document.getElementById('listaProdutos');
+
+    // 4. Percorrer os produtos
+    for (let i = 0; i < produtos.length; i++) {
+
+        const prod = produtos[i];
+
+        // 5. Criar HTML do produto
+        const card = `
+            <div class="product-card">
+                <img src="${prod.imagem}">
+                <h4>${prod.nome}</h4>
+                <div class="price">R$ ${prod.preco.toFixed(2)}</div>
+                <button class="button1">Comprar</button>
+            </div>
+        `;
+
+        // 6. Inserir na tela
+        container.innerHTML += card;
+    }
+}
+
+// 7. Executar função
+carregarProdutos();
+
+</script>
+
+</body>
+</html>
