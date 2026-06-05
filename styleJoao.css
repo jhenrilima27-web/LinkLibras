@@ -11,7 +11,7 @@ body {
     background: rgb(235, 235, 235);
 }
 
-.fundo_login {
+.fundo {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -20,7 +20,7 @@ body {
 }
 
 button {
-    padding: 15px;  /*Altura e largura interna*/
+    padding: 12px;  /*Altura e largura interna*/
     font-weight: bolder;
     border-radius: 100px;  /*Arredondado*/
     border: none;  /*remove a borda*/
@@ -29,6 +29,7 @@ button {
     transition: 0.3s;
     font-size:15px;
     color: rgb(235, 235, 235);
+    justify-content: center;
 }
 
 button:hover {
@@ -43,25 +44,6 @@ button:hover {
 
 a{
     text-decoration: none;
-}
-
-.button1{
-    background:rgb(65, 110, 155);
-    border-radius:7px;
-    font-size:17px;
-    padding: 10px 20px;  /*Altura e largura interna*/
-    display: block;
-    margin-left: auto;
-    width: 200px;
-}
-
-.button2 {
-    background:rgb(65, 110, 155);
-    border-radius:7px;
-    font-size:17px;
-    padding: 9px 15px;  /*Altura e largura interna*/
-    justify-content: flex-end; /*Deixa tudo a direita*/
-    margin-right: 15px;
 }
 
 .casa_inicial {
@@ -107,13 +89,14 @@ a{
     background-color: transparent;  /*Cor de fundo*/
     padding: 30px;  /*espaço interno*/
     border-radius: 15px;  /*Bordas arredondadas*/
-    margin-top: 70px;
+    margin-top: 90px;
     width: 100%;  /*Ocupa o máximo de Largura possivel*/
     max-width: 650px; /*Limite de tamanho*/
 }
 
 h1{
     text-align: center;
+    font-size: 32px;
 }
 
 input:not([type="radio"]) {
@@ -121,7 +104,7 @@ input:not([type="radio"]) {
     padding: 12px;  /* Espaço interno */
     border-radius: 100px;  /* Arredondar a borda funciona agora! */
     margin-top: 5px;  /* Espaço acima do input */
-    font-size: 16px;
+    font-size: 15px;
     border: 3px solid transparent; /* Cria o espaço da borda */
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(230deg, #0E3A99, #06CAFE);
     background-origin: border-box;
@@ -139,16 +122,15 @@ input:not([type="radio"]) {
 
 .logo{
     width: 80px;/*tamanho da imagem da logo*/
-}
+} 
 
-.logo_branca{
+.logo_login{
     display: flex;
     position: fixed;
     justify-content: center;
-    width: 200px;/*tamanho da imagem da logo*/
-    margin: 0px;
+    width: 190px;/*tamanho da imagem da logo*/
     align-items:center;
-    margin-bottom: 465px;
+    margin-bottom: 400px;
 }
 
 
@@ -201,7 +183,7 @@ input:not([type="radio"]) {
 }
 }
 
-.logo_branca1{
+.logo_cadastro{
     position: absolute; /*mantém a imagem no local*/
     justify-content: center;
     top: 0px; /*distância do topo*/
@@ -221,11 +203,11 @@ input:not([type="radio"]) {
 .container_cadastro_interpretes{
     width: 700px;
     max-width:700px;
-    margin:auto;
-    background:rgb(135, 181, 247);
+    justify-content: center;
+    align-items: center;
     padding:30px;
     border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    margin-top: 90px;
 }
 
 .grupo{
@@ -237,14 +219,14 @@ input:focus{
     border-color:#007bff;
 }
 
-.logo_branca2{
+.logo_interprete{
     display: flex;
     position: fixed;
     justify-content: center;
     width: 200px;/*tamanho da imagem da logo*/
     margin: 0px;
     align-items:center;
-    margin-bottom: 460px;
+    margin-bottom: 400px;
 }
 
 .grupo-radio {
@@ -260,7 +242,7 @@ input:focus{
 .opcao-radio {
     flex: 1;
     text-align: center;
-    padding: 12px 20px;
+    padding: 10px 12px;
     border-radius: 100px;
     cursor: pointer;
     font-weight: bold;
