@@ -388,3 +388,37 @@ input:focus{
     }
 }
 
+/*------------Pagina Perfil Surdo ------------*/
+
+.container_surdo {
+    display: grid;
+    margin: 0px auto;
+    gap: 20px;
+
+    grid-template-areas:
+        "foto informacao"
+        "foto informacao";
+
+    grid-template-columns: 400px 1fr;
+    grid-template-rows: 100% 100% ;
+}
+
+.foto {
+    display: flex;
+    grid-area: foto;
+    background-color: #007bff;
+    justify-self: center;
+    align-items: center;
+}
+
+.foto img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 400px;
+}
+
+.informacao {
+    grid-area: informacao;
+    background-color: red;
+}
