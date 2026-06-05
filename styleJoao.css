@@ -19,7 +19,7 @@ body {
     object-fit: cover; /* Ajusta a imagem sem distorcer */
 }
 
-button {
+button, .button a {
     padding: 12px;  /*Altura e largura interna*/
     font-weight: bolder;
     border-radius: 100px;  /*Arredondado*/
@@ -138,11 +138,10 @@ input:not([type="radio"]) {
 /*--------Pagina Cadastro--------*/
 
 .body-cadastro{
+    height: 100vh;
     display:flex;
     justify-content: center;  /*centralizar na horizontal*/
     font-family: Arial, sans-serif; /*fonte*/
-    margin: 10px;
-    margin-top: 95px;
     align-items:center;
 }
 
@@ -161,26 +160,8 @@ input:not([type="radio"]) {
 .container_cadastro{
     width: 800px;
     margin:auto;
-    background:rgb(135, 181, 247);
     padding:30px;
     border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 800px) {
-    .body_cadastro {
-        margin:5px;
-    }
-    .container_cadastro {
-    min-width: 300px;
-    width: 500px;
-    max-width:500px;
-    margin:auto;
-    background:rgb(135, 181, 247);
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
 }
 
 .logo_cadastro{
