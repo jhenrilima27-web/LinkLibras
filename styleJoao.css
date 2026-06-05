@@ -99,6 +99,10 @@ h1{
     font-size: 32px;
 }
 
+h2 {
+    color: #06c8fe88;
+}
+
 input:not([type="radio"]) {
     width: 100%;  /* Ocupa toda a largura da caixa */
     padding: 12px;  /* Espaço interno */
@@ -109,6 +113,14 @@ input:not([type="radio"]) {
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(230deg, #0E3A99, #06CAFE);
     background-origin: border-box;
     background-clip: padding-box, border-box;
+}
+
+input#Senha.input_senha {
+    width: 70%;
+}
+
+input#Senha2.input_senha {
+    width: 70%;
 }
 
 
@@ -145,6 +157,10 @@ input:not([type="radio"]) {
     align-items:center;
 }
 
+.label_senha {
+    margin-left: 115px;
+}
+
 .linha {
     display: flex;
     gap: 20px;
@@ -159,19 +175,28 @@ input:not([type="radio"]) {
 
 .container_cadastro{
     width: 800px;
-    margin:auto;
+    margin-top: 80px;
     padding:30px;
     border-radius:10px;
 }
 
 .logo_cadastro{
-    position: absolute; /*mantém a imagem no local*/
+    display: flex;
+    position: fixed;
     justify-content: center;
-    top: 0px; /*distância do topo*/
-    width: 200px;/*tamanho da imagem da logo*/
-    margin: 0px;
+    width: 190px;/*tamanho da imagem da logo*/
+    align-items:center;
+    margin-bottom: 440px;
 }
 
+.logo_cadastro3{
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    width: 190px;/*tamanho da imagem da logo*/
+    align-items:center;
+    margin-bottom: 330px;
+}
 /*--------Pagina cadastro de interprete-------*/
 
 .body_interpretes {
@@ -190,7 +215,6 @@ input:not([type="radio"]) {
     border-radius:10px;
     margin-top: 90px;
 }
-
 .grupo{
     margin-bottom:13px;
 }
@@ -204,7 +228,7 @@ input:focus{
     display: flex;
     position: fixed;
     justify-content: center;
-    width: 200px;/*tamanho da imagem da logo*/
+    width: 190px;/*tamanho da imagem da logo*/
     margin: 0px;
     align-items:center;
     margin-bottom: 400px;
