@@ -1,132 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkLibras</title>
-    <link rel="stylesheet" href="styleJoao.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkLibras</title>
 
+<link rel="stylesheet" href="style-thiago.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+</head>
 <body>
 
-<div class="container_principal">
+<header class="header">
+    <a href="Pagina_principal.html" style="text-decoration: none; color: inherit;">
+        <img src="imagens-thiago/logo.png" class="logo">
+    </a>
 
-    <header class="header">
-        <div>
-            <img src="img/LogoMãosLetraspgn.png" class="logo_principal">
-        </div>
-        <div>
-            <img src="img/LogoLetraspng.png" class="letrasiniciais">
-        </div>
+    <div class="barra-pesquisa">
+        <img src="imagens-thiago/lupa.png" alt="">
+        <input type="text" placeholder="Encontre um intérprete">
+    </div>
 
-        <div class="headerDireita">
-            <a href="Pagina_cadastro.html">
-                <button class="button2">Se cadastrar</button>
-            </a> 
-
-            <a href="Pagina_Login.html">
-            <button class="button2">Login</button>
-            </a>
-
-            <a href="Pagina_carrinho.html">
-                <img src="img/IconUser.svg" class="IconUser">
-            </a>
-        </div>
-    </header>
-
-    <aside class="sidebar">
-        <h1>Opções</h1><br>
-        
-        <a href="Pagina_carrinho.html">
-            <button class="button1">Acessar o carrinho</button>  
-        </a><br><br>
-
-        <a href="Pagina_cadastro_interpretes.html">
-            <button class="button1">Cadastrar Interprete</button>  
-        </a><br><br>
-
-        <a href="Pagina_cadastro_interpretes.html">
-            <button class="button1">Ser um Interprete</button>  
-        </a>
-
-    </aside>
-
-    <main class="products" id="listaProdutos">
-
-
-    </main>
-
-    <footer class="footer">
-        <p3><strong>Contatos:</strong></p3>
-            <p>Email: angelbrinquedos@gmail.com</p>
-            <p>Instagram: angel_brinquedos</p>
-    </footer>
-
-</div>
-<script>
-async function abrirCadastro() {
-
-    // 1. BUSCA O HTML
-    const resposta = await fetch('Pagina_casdastro_produtos.html');
-    // 2. CONVERTE PARA TEXTO
-    const html = await resposta.text();
-    // 3. SELECIONA O CONTAINER
-    const container = document.getElementById('listaProdutos');
-    // 4. INSERE O HTML
-    container.innerHTML = html;
-    // 5. PEGA A TAG SCRIPT
-    const scriptOriginal = container.querySelector("script");
-    // 6. VERIFICA SE EXISTE SCRIPT
-    if (scriptOriginal) {
-
-        // 7. CRIA NOVA TAG SCRIPT
-        const novoScript = document.createElement("script");
-
-        // 8. COPIA O CÓDIGO JAVASCRIPT
-        novoScript.textContent = scriptOriginal.textContent;
-
-        // 9. ADICIONA NO BODY , ADICIONA NO DOM E EXECUTA O SCRIPT
-        document.body.appendChild(novoScript);
-
-        // 10. REMOVE SCRIPT ANTIGO
-        scriptOriginal.remove();
-    }
-}
-async function carregarProdutos() {
-
-    // 1. Buscar o arquivo JSON
-    const resposta = await fetch('produtos_pdo.php');
-
-    // 2. Converter para objeto JavaScript
-    const produtos = await resposta.json();
-
-    // 3. Selecionar onde vai mostrar
-    const container = document.getElementById('listaProdutos');
-
-    // 4. Percorrer os produtos
-    for (let i = 0; i < produtos.length; i++) {
-
-        const prod = produtos[i];
-
-        // 5. Criar HTML do produto
-        const card = `
-            <div class="product-card">
-                <img src="${prod.imagem}">
-                <h4>${prod.nome}</h4>
-                <div class="price">R$ ${prod.preco.toFixed(2)}</div>
-                <button class="button1">Comprar</button>
+    <div class="menu">
+        <a href="Pagina_cadastro_interpretes.html" style="text-decoration: none; color: inherit;">
+            <div class="btn-interprete">
+                Sou intérprete
             </div>
-        `;
+        </a>    
+        <a href="Pagina_Login.html" style="text-decoration: none; color: inherit;">
+            <div class="btn-login">
+                Login
+            </div>
+        </a>    
+    </div>
 
-        // 6. Inserir na tela
-        container.innerHTML += card;
-    }
-}
+</header>
 
-// 7. Executar função
-carregarProdutos();
 
-</script>
+<section class="banner">
+
+    <img src="imagens-thiago/banner.png">
+
+</section>
+
+<div class="titulo">Os melhores <span>intérpretes</span> de Libras do Brasil</div>
+<div class="preco-cidade">
+    <div class="cidade">
+        <div class="cidade-h1">Escolha a sua cidade</div>
+        <div class="cidade-h2"><img src="imagens-thiago/pin.png" alt="pin"><input type="text" placeholder="Ex: São Paulo"></div>    
+    </div>
+    <div class="preco">
+        <div class="preco-h1">Preço máximo por hora</div>
+        <div class="preco-h2">  
+            <div class="preco-slider">
+
+                <div class="linha-container">
+
+                    <div class="valor" id="valorPreco">R$ 50</div>
+
+                    <div class="linha"></div>
+
+                    <div class="bolinhas">
+
+                        <div class="bola ativa" data-valor="50"></div>
+                        <div class="bola" data-valor="100"></div>
+                        <div class="bola" data-valor="150"></div>
+                        <div class="bola" data-valor="200"></div>
+                        <div class="bola" data-valor="250"></div>
+                        <div class="bola" data-valor="300"></div>
+                        <div class="bola" data-valor="350"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="filtro-campo">
+    <div>
+        <h4>Filtros:</h4>
+    </div>    
+    <div class="filtros">
+        <button>Presencial</button>
+        <button>Online</button>
+        <button>Eventos</button>
+        <button>Libras Tátil</button>
+        <button>Atende Urgências</button>
+        <button>Inglês</button>
+        <button>Espanhol</button>
+    </div>
+</div>
+
+<div class="cards">
+<!--AQUI FICAM OS CARDS-->
+</div>
+<div class="ver-mais">
+        <img src="imagens-thiago/seta.png" alt="">
+        <div> Ver mais</div>
+</div>
+
+<section class="avaliacoes">
+
+<h4>Milhares de pessoas com deficiência auditiva atendiadas</h4>
+
+<div class="comentario">
+    <div class="foto-comentario">
+        <img src="imagens-thiago/comentario-imagens/pessoa1.png" alt="">
+    </div>
+    <div class="container-texto">
+        <div class="nome-comentario">Maria Júlia</div>
+        <div class="texto-comentario">Ótimo atendimento do Pedro, me ajudou quando tive que realizar a minha entrevista de emprego.</div>
+    </div>    
+</div>
+
+<div class="comentario">
+    <div class="foto-comentario">
+        <img src="imagens-thiago/comentario-imagens/pessoa2.jpg" alt="">
+    </div>
+    <div class="container-texto">
+        <div class="nome-comentario">Augusto</div>
+        <div class="texto-comentario">Pra quem é deficiente é muito difícil conseguir achar alguém quando a gente precisa, esse site me salvou!</div>
+    </div>    
+</div>
+
+<div class="comentario">
+    <div class="foto-comentario">
+        <img src="imagens-thiago/comentario-imagens/pessoa3.jpg" alt="">
+    </div>
+    <div class="container-texto">
+        <div class="nome-comentario">Angela</div>
+        <div class="texto-comentario">Contratei o Ricardo pra uma palestra que ia ter na escola e ele foi perfeito, os meninos surdos amaram!</div>
+    </div>    
+</div>
+
+<div class="comentario">
+    <div class="foto-comentario">
+        <img src="imagens-thiago/comentario-imagens/pessoa4.jpg" alt="">
+    </div>
+    <div class="container-texto">
+        <div class="nome-comentario">Bento</div>
+        <div class="texto-comentario">Ótimo atendimento, vou contratar mais vezes.</div>
+    </div>    
+</div>
+</section>
+
+<section class="cadastro">
+  <div>
+    <h4>É um intérprete?</h4>
+  </div>
+
+  <div>
+    <h5>Se cadastre<span class="texto-verde"> de graça </span>na </h5><img src="imagens-thiago/logo2.png" alt="Logo">
+  </div>
+
+  <div>
+    <a href="Pagina_cadastro_interpretes.html" style="text-decoration: none; color: inherit;">
+        <button>Cadastrar-me</button>
+    </a>    
+  </div>
+</section>
+
+
+<footer>
+    <img src="imagens-thiago/logo-branca.png">
+    <div class="rodape-btns">
+        <button>Contato</button>
+
+        <button>Política de Privacidade</button>
+
+        <button>Sobre</button>
+    </div>    
+
+</footer>
+
+<script src="script-thiago.js"></script>
 
 </body>
 </html>
