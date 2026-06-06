@@ -19,7 +19,7 @@ body {
     object-fit: cover; /* Ajusta a imagem sem distorcer */
 }
 
-button, .button a {
+button, .button a , .button_atualizar a{
     padding: 12px;  /*Altura e largura interna*/
     font-weight: bolder;
     border-radius: 100px;  /*Arredondado*/
@@ -30,6 +30,19 @@ button, .button a {
     font-size:15px;
     color: rgb(235, 235, 235);
     justify-content: center;
+}
+
+.botao_informacoes {
+    width: 100%;  /* Ocupa toda a largura da caixa */
+    padding: 12px;  /* Espaço interno */
+    border-radius: 100px;  /* Arredondar a borda funciona agora! */
+    margin-top: 5px;  /* Espaço acima do input */
+    font-size: 15px;
+    border: 3px solid transparent; /* Cria o espaço da borda */
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(230deg, #0E3A99, #06CAFE);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    color: black;
 }
 
 button:hover {
@@ -387,6 +400,12 @@ input:focus{
 
 /*------------Pagina Perfil Surdo ------------*/
 
+.body_perfil {
+    margin: 0;  /*margem para cima e para baixo*/
+    height: 100vh;  /*Altura da tela 100*/
+    font-family: Arial, sans-serif;  /*Escolha da fonte */
+}
+
 .container_surdo {
     display: grid;
     margin: 0px auto;
@@ -397,25 +416,59 @@ input:focus{
         "foto informacao";
 
     grid-template-columns: 400px 1fr;
-    grid-template-rows: 100% 100% ;
+    grid-template-rows: 307px 306px;
 }
 
 .foto {
     display: flex;
     grid-area: foto;
-    background-color: #007bff;
     justify-self: center;
     align-items: center;
 }
 
+.foto_nome {
+    display: flex;
+    flex-direction: column; /* Isso faz um ficar embaixo do outro */
+    justify-self: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.deficiencia {
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+    color: #007bffb9;
+}
+
 .foto img {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
     border-radius: 400px;
 }
 
 .informacao {
     grid-area: informacao;
-    background-color: red;
+}
+
+.container_inf_surdo {
+    width: 800px;
+    max-width:800px;
+    justify-content: center;
+    align-items: center;
+    padding:30px;
+    border-radius:10px;
+    margin-top: 90px;
+}
+
+.nome_perfil {
+    color: black;
+}
+
+.button_atualizar {
+    display: flex;
+    justify-content: flex-end; /* Empurra o conteúdo (o botão) para a direita */
+    width: 100%;               /* Garante que a div ocupe toda a largura disponível */
+    margin-top: 10px;
 }
