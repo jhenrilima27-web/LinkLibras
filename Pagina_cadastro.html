@@ -22,7 +22,7 @@
 
     <div class="container_cadastro">
 
-        <form class="formulario" method="post" action="salvar.php">
+        <form class="formulario">
 
             
             <h1>Cadastro</h1>
@@ -33,36 +33,62 @@
 
             <div class="linha">
                 <div class="campo">
-                    <label for="Nome"><strong>Nome: </strong></label>
-                    <input type="text" id="nome" name="Nome" placeholder="Digite seu nome">
+                    <label for="nome"><strong>Nome: </strong></label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
                 </div>
 
                 <div class="campo">
-                    <label for="CPF"><strong>CPF: </strong></label>
-                    <input type="text" id="CPF" name="CPF" placeholder="Digite seu CPF">
+                    <label for="cpf"><strong>CPF: </strong></label>
+                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
                 </div>
             </div>
 
             <div class="linha">
                 <div class="campo">
-                    <label for="Email"><strong>Email:</strong> </label>
-                    <input type="email" id="Email" name="Email" placeholder="Digite seu email">
+                    <label for="email"><strong>Email:</strong> </label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu email">
                 </div>
 
                 <div class="campo">
-                    <label for="Telefone"><strong>Telefone:</strong> </label>
-                    <input type="tel" id="Telefone" name="Telefone" placeholder="Digite seu nome">
+                    <label for="telefone"><strong>Telefone:</strong> </label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="Digite seu nome">
                 </div>
             </div>
 
-            <label for="Deficiencia"><strong>Deficiencia:</strong></label>
-            <input type="text" id="Deficiencia" name="Deficiencia" placeholder="Digite sua deficiência"><br><br><br>
+            <label for="deficiencia"><strong>Deficiencia:</strong></label>
+            <input type="text" id="deficiencia" name="deficiencia" placeholder="Digite sua deficiência"><br><br><br>
             
             <center>
                 <div class="button">
-                <a href="Pagina_cadastro2.html">Continuar</a>
+                    <button type="button" onclick="salvarPagina1()">
+                    Continuar
+                    </button>
                 </div>
             </center>
+
+            <script>
+                /*Define função botão*/
+                function salvarPagina1(){
+
+                    /*Captura os dados do formulario na variavel dados*/
+                    const dados = {
+                        nome: document.getElementById("nome").value,
+                        cpf: document.getElementById("cpf").value,
+                        email: document.getElementById("email").value,
+                        telefone: document.getElementById("telefone").value,
+                        deficiencia: document.getElementById("deficiencia").value
+                    };
+
+                    /*Armazena no local do navegador como dados cadastro transformando em texto*/
+                    localStorage.setItem(
+                        "dadosCadastro",
+                        JSON.stringify(dados)
+                    );
+
+                    /*Leva a proxima página*/
+                    window.location.href = "Pagina_cadastro2.html";
+                }
+            </script>
 
             </div>
         </div>

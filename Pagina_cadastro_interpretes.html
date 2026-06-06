@@ -33,7 +33,7 @@
                     <input type="text" id="nome" name="nome"
                         required
                         minlength="3"
-                        maxlength="100"
+                        maxlength="200"
                         placeholder="Digite o nome do Interprete">
 
                 </div>
@@ -126,40 +126,27 @@
 
 <script>
 	
-document.getElementById("formInterprete").addEventListener("submit", cadastrarProduto);
+document.getElementById("formInterprete").addEventListener("submit", cadastrarInterprete);
 
 
-async function cadastrarProduto(evento) {
+async function cadastrarInterprete(evento) {
 
     // EVITA RECARREGAR A PÁGINA
     evento.preventDefault();
-/*
-    // CAPTURA DADOS
-    const id = document.getElementById("id").value;
-    const nome = document.getElementById("nome").value;
-    const preco = document.getElementById("preco").value;
-    const imagem = document.getElementById("imagem").value;
-    // MONTA OBJETO
-    const produto = {
-        id: id,
-        nome: nome,
-        preco: preco,
-        imagem: imagem
-    };
-*/
+
 const form = document.getElementById("formInterprete"); // CAPTURA O FORMULÁRIO
 const dadosForm = new FormData(form); // CAPTURA TODOS OS CAMPOS
-const produto = Object.fromEntries( dadosForm.entries()  ); // CONVERTE PARA OBJETO
-console.log(produto); // EXIBE OBJETO
+const interprete = Object.fromEntries( dadosForm.entries()  ); // CONVERTE PARA OBJETO
+console.log(interprete); // EXIBE OBJETO'
 
     try {
         // ENVIA PARA API PHP
-        const resposta = await fetch("produtos_cadastrar.php", {
+        const resposta = await fetch("interpretes_cadastrar.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(produto)
+            body: JSON.stringify(interprete)
         });
 
 		debugger;
@@ -174,7 +161,7 @@ console.log(produto); // EXIBE OBJETO
 
         console.error(erro);
 
-        alert("Erro ao cadastrar produto");
+        alert("Erro ao cadastrar Interprete");
     }
 }
 

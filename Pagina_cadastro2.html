@@ -22,7 +22,7 @@
 
     <div class="container_cadastro">
 
-        <form class="formulario" method="post" action="salvar.php">
+        <form class="formulario">
 
             
             <h1>Cadastro</h1>
@@ -33,42 +33,73 @@
 
             <div class="linha">
                 <div class="campo">
-                    <label for="CEP"><strong>CEP: </strong></label>
-                    <input type="number" id="CEP" name="CEP" placeholder="Digite seu CEP">
+                    <label for="cep"><strong>CEP: </strong></label>
+                    <input type="number" id="cep" name="cep" placeholder="Digite seu CEP">
                 </div>
 
                 <div class="campo">
-                    <label for="Estado"><strong>Estado: </strong></label>
-                    <input type="text" id="Estado" name="Estado" placeholder="Digite seu Estado">
+                    <label for="estado"><strong>Estado: </strong></label>
+                    <input type="text" id="estado" name="estado" placeholder="Digite seu Estado">
                 </div>
             </div>
 
             <div class="linha">
                 <div class="campo">
-                    <label for="Cidade"><strong>Cidade:</strong></label>
-                    <input type="text" id="Cidade" name="Cidade" placeholder="Digite sua Cidade">
+                    <label for="cidade"><strong>Cidade:</strong></label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite sua Cidade">
                 </div>
 
                 <div class="campo">
-                    <label for="Bairro"><strong>Bairro:</strong></label>
-                    <input type="text" id="Bairro" name="Bairro" placeholder="Digite seu bairro">
+                    <label for="bairro"><strong>Bairro:</strong></label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro">
                 </div>
             </div>
 
             <div>
-                <label for="Complemento"><strong>Complemento:</strong></label>
-                <input type="text" id="Complemento" name="Complemento" placeholder="Digite o Complemento">
+                <label for="complemento"><strong>Complemento:</strong></label>
+                <input type="text" id="complemento" name="complemento" placeholder="Digite o Complemento">
             </div><br><br>
 
             <center>    
-            <div class="button">
-            <a href="Pagina_cadastro3.html">Continuar</a>
-            </div>
+                <button type="button" onclick="salvarPagina2()">
+                    Continuar
+                </button>
             </center>
 
             </div>
         </div>
-    
+
+        <script>
+            /*Definindo função do botão*/
+            function salvarPagina2(){
+
+                /*Pegando os dados da página passada e transformando em objeto de novo*/
+                let dados =
+                    JSON.parse(
+                        localStorage.getItem("dadosCadastro")
+                    );
+
+                /*Adicionando novos dados a variavel dados*/
+                dados.cep = document.getElementById("cep").value;
+
+                dados.estado = document.getElementById("estado").value;
+
+                dados.cidade = document.getElementById("cidade").value;
+
+                dados.bairro = document.getElementById("bairro").value;
+
+                dados.complemento = document.getElementById("complemento").value;
+
+                /*Guardando de novo para a nova página e transformando em texto*/
+                localStorage.setItem(
+                    "dadosCadastro",
+                    JSON.stringify(dados)
+                );
+
+                /*Direciona para a página 3*/
+                window.location.href = "Pagina_cadastro3.html";
+            }
+        </script>
 </body>
 </form>
 </html>

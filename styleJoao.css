@@ -128,11 +128,11 @@ input:not([type="radio"]) {
     background-clip: padding-box, border-box;
 }
 
-input#Senha.input_senha {
+input#senha.input_senha {
     width: 70%;
 }
 
-input#Senha2.input_senha {
+input#senha2.input_senha {
     width: 70%;
 }
 
