@@ -38,24 +38,98 @@
                     </center>
                 </div>
 
-            
                 <div class="campo">
-                    <label class="label_senha" for="senha2"><strong>Confirmar Senha:</strong> </label>
+                    <label class="label_senha" for="senha2"><strong>Confirmar Senha:</strong></label>
                     <center>
-                    <input class="input_senha" type="password" id="senha2" name="senha2" placeholder="Confirme sua senha"><br><br>
+                        <input class="input_senha" type="password" id="senha2" name="senha2" placeholder="Confirme sua senha"><br><br>
                     </center>
                 </div>
 
                 </div>
                     
                 <center>
-                    <div class="button">
-                    <button class="button1" type="submit">Concluir</button>
-                    </div>
+                    <button
+                        class="button1"
+                        type="button"
+                        onclick="concluirCadastro()">
+                        Concluir
+                    </button>
                 </center>
 
-            </div>
-        </div> 
+        </form>
+    </div>
+
+    <script>
+    // define a função
+    async function concluirCadastro(){
+
+        // Define a variavel senha
+        const senha =
+            document.getElementById("senha").value;
+
+        // Define a variavel senha2
+        const senha2 =
+            document.getElementById("senha2").value;
+
+        // compara as senhas 
+        if(senha !== senha2){
+
+            alert("As senhas não coincidem.");
+
+            return;
+        }
+
+        //trás os dados da outra página
+        let dados =
+            JSON.parse(
+                localStorage.getItem("dadosCadastro")
+            );
+
+        //Adiciona a senha aos dados
+        dados.senha = senha;
+
+
+        try {
+
+    const resposta = await fetch(
+        "https://linklibras.infinityfree.me/clientes_cadastrar.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // envia os dados
+            body: JSON.stringify(dados)
+        }
+    );
+
+    const resultado = await resposta.json();
+
+    //Mensagem de certo ou errado
+    if(resultado.sucesso){
+
+        alert(resultado.mensagem);
+
+        localStorage.removeItem("dadosCadastro");
+
+        window.location.href = "Pagina_Login.html";
+
+    } else {
+
+        alert("Erro: " + resultado.mensagem);
+
+    }
+
+    } catch(erro){
+
+    console.error(erro);
+
+    alert("Erro ao conectar com o servidor.");
+
+    }
+
+    }
+
+    </script>
 </body>
-</form>
 </html>
