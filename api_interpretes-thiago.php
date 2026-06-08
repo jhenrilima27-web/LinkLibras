@@ -5,13 +5,15 @@ header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Configuração do banco de dados
-$host = 'sql302.infinityfree.com'; 
-$database = 'if0_41331569_teste';
-$username = 'if0_41331569';
-$password = 'TKo14JAk';
+$host = "sql302.infinityfree.com";
+$banco = "if0_41679144_linklibras_db";
+$usuario = "if0_41679144";
+$senhaBanco = "XSjVvTFvxk5m"; // Lembre-se de colocar a senha real aqui
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $username, $password);
+    // CORREÇÃO: Passando as variáveis corretas ($host, $banco, $usuario, $senhaBanco)
+    $pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8mb4", $usuario, $senhaBanco);
+    
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Query para buscar os 6 primeiros intérpretes

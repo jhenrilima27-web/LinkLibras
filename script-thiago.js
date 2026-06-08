@@ -85,14 +85,14 @@ async function carregarInterpretes() {
                     <div class="dados">
                         <div class="localizacao-nota">
                             <div class="localizacao">
-                                <img src="imagens/pin.png" alt="">
+                                <img src="imagens-thiago/pin.png" alt="">
                                 <div class="localizacao-h1">
                                     <div class="pessoa-cidade">${interprete.estado}</div>
                                     <div class="bairro">${interprete.cidade}</div>
                                 </div>    
                             </div>
                             <div class="nota-container">
-                                <img src="imagens/estrela.png" alt="">
+                                <img src="imagens-thiago/estrela.png" alt="">
                                 <div class="nota">${notaFixa}</div>
                             </div>  
                         </div>
