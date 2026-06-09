@@ -460,6 +460,7 @@ input:focus{
     padding:30px;
     border-radius:10px;
     margin-top: 90px;
+    background-color: #007bff1e;
 }
 
 .nome_perfil {
