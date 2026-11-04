@@ -71,6 +71,12 @@
         const senha2 =
             document.getElementById("senha2").value;
 
+        
+        if (!senha || !senha2) {
+            alert("Preencha os dois campos de senha.");
+            return;
+        }
+
         // compara as senhas 
         if(senha !== senha2){
 
@@ -85,6 +91,15 @@
                 localStorage.getItem("dadosCadastro")
             );
 
+        if (!dados) {
+            alert("Não encontramos os dados do cadastro. Comece novamente.");
+            window.location.href = "Pagina_cadastro.html";
+            return;
+        }
+
+        //Converte eSurdo para boolean
+        dados.eSurdo = dados.eSurdo === "true";
+
         //Adiciona a senha aos dados
         dados.senha = senha;
 
@@ -92,7 +107,7 @@
         try {
 
     const resposta = await fetch(
-        "https://linklibras.infinityfree.me/clientes_cadastrar.php",
+        "http://localhost:8081/api/auth/usuarios/cadastro",
         {
             method: "POST",
             headers: {
@@ -106,9 +121,9 @@
     const resultado = await resposta.json();
 
     //Mensagem de certo ou errado
-    if(resultado.sucesso){
+    if(resposta.ok) {
 
-        alert(resultado.mensagem);
+        alert("Cadastro realizado com sucesso!");
 
         localStorage.removeItem("dadosCadastro");
 
@@ -116,7 +131,7 @@
 
     } else {
 
-        alert("Erro: " + resultado.mensagem);
+        alert("Erro no cadastro: " + resultado.mensagem || resultado.message || "Vefirique os dados informados.");
 
     }
 
@@ -124,7 +139,7 @@
 
     console.error(erro);
 
-    alert("Erro ao conectar com o servidor.");
+    alert("Não foi possível conectar ao servidor.");
 
     }
 
