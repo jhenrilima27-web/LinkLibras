@@ -61,7 +61,7 @@
 
     <script>
     // define a função
-    async function concluirCadastro(){
+    async function concluirCadastro() {
 
         // Define a variavel senha
         const senha =
@@ -106,19 +106,27 @@
 
         try {
 
-    const resposta = await fetch(
-        "http://localhost:8081/api/auth/usuarios/cadastro",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            // envia os dados
-            body: JSON.stringify(dados)
-        }
-    );
+             const resposta = await fetch(
+                "http://localhost:8081/api/auth/usuarios/cadastro",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    // envia os dados
+                    body: JSON.stringify(dados)
+                }
+            );
 
-    const resultado = await resposta.json();
+    const textoResposta = await resposta.text();
+
+    let resultado;
+
+    try {
+        resultado = JSON.parse(textoResposta);
+    } catch {
+        resultado = {mensagem: textoResposta };
+    }
 
     //Mensagem de certo ou errado
     if(resposta.ok) {
@@ -131,11 +139,11 @@
 
     } else {
 
-        alert("Erro no cadastro: " + resultado.mensagem || resultado.message || "Vefirique os dados informados.");
+        alert("Erro no cadastro: " (+ resultado.mensagem || resultado.message || "Vefirique os dados informados."));
 
     }
 
-    } catch(erro){
+    } catch(erro) {
 
     console.error(erro);
 
