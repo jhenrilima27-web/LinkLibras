@@ -19,7 +19,7 @@
     <div class="login-container">
         <h1>Login</h1><br>
 
-        <form>
+        <form id="formLogin">
             <label for="email"><strong>Email:</strong></label><br>
             <input type="email" id="email" name="email" placeholder="Digite seu email" required><br><br>
 
@@ -41,11 +41,88 @@
                 <button type="button">Cadastrar-se</button>
             </a>
             
-            <a href="Pagina_principal.html">
-                <button type="button">Entrar</button>
+            <a>
+                <button type="submit">Entrar</button>
             </a>
         </div>
         </form>
     </div>
+
+    <script>
+
+        const formulario = document.getElementById("formLogin");
+
+        formulario.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("senha").value;
+
+            const perfil = document.querySelector(
+                'input[name="perfil"]:checked' 
+            );
+
+            if (!perfil) {
+                alert("Selecione o tipo de perfil.");
+                return;
+            }
+
+            const endpoint = perfil.value === "usuario"
+                ? "/api/auth/usuarios/login"
+                : "/api/auth/interpretes/login";
+
+            try {
+
+                const resposta = await fetch(
+                    "http://localhost:8081" + endpoint,
+                    {
+                        method: "Post",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            senha: senha 
+                        })
+                    }
+                );
+
+                const resultado = await resposta.json();
+
+                if (resposta.ok) /* redireciona*/ {
+
+                    localStorage.setItem(
+                        "token",
+                        resultado.token 
+                    );
+
+                    localStorage.setItem(
+                        "usuarioLogado",
+                        JSON.stringify(resultado) 
+                    );
+
+                    alert("Login realizado com sucesso!");
+
+                    window.location.href = "Pagina_principal.html";
+
+                } else /*exibe erro*/ {
+
+                    alert(
+                        resultado.mensagem || resultado.message || "E-mail ou senha incorretos.");
+
+                }
+
+            } catch (erro) {
+
+                console.error(erro);
+
+                alert("Não foi possível conectar ao servidor.");
+            }
+
+        });
+
+    </script>
 </body>
 </html>
