@@ -38,6 +38,28 @@
                 </div>
 
                 <div class="campo">
+                    <label for="dataNascimento">
+                        <strong>Data de nascimento:</strong>
+                    </label>
+
+                    <input type="date" id="dataNascimento" name="dataNascimento">
+                </div>
+
+                <div class="campo">
+                    <label for="sexo">
+                        <strong>Sexo:</strong>
+                    </label>
+
+                    <select id="sexo" name="sexo">
+                        <option value="">Selecione</option>
+                        <option value="F">Feminino</option>
+                        <option value="M">Masculino</option>
+                        <option value="O">Outro</option>
+                    </select>
+                </div>
+
+
+                <div class="campo">
                     <label for="cpf"><strong>CPF: </strong></label>
                     <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
                 </div>
@@ -82,14 +104,17 @@
                         cpf: document.getElementById("cpf").value.replace(/\D/g, ""),
                         email: document.getElementById("email").value.trim(),
                         telefone: document.getElementById("telefone").value.trim(),
-                        deficiencia: document.getElementById("eSurdo").value
+                        eSurdo: document.getElementById("eSurdo").value,
+                        dataNascimento: document.getElementById("dataNascimento").value,
+                        sexo: document.getElementById("sexo").value
                     };
 
-                    if (!dados.nome || !dados.cpf || !dados.email || !dados.telefone || dados.eSurdo === "") {
+
+                    if (!dados.nome || !dados.cpf || !dados.email || !dados.telefone || !dados.dataNascimento || !dados.sexo || dados.eSurdo === "") {
                         alert("Preencha todos os campos.");
                         return;
                     }
-                    
+
                     /*Armazena no local do navegador como dados cadastro transformando em texto*/
                     localStorage.setItem(
                         "dadosCadastro",
