@@ -55,8 +55,14 @@
                 </div>
             </div>
 
-            <label for="deficiencia"><strong>Deficiencia:</strong></label>
-            <input type="text" id="deficiencia" name="deficiencia" placeholder="Digite sua deficiência"><br><br><br>
+            <label for="eSurdo"><strong>Você tem deficiência auditiva?</strong></label>
+
+            <select id="eSurdo" name="eSurdo">
+                <option value="">Selecione</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+            </select>
+
             
             <center>
                 <div class="button">
@@ -72,13 +78,18 @@
 
                     /*Captura os dados do formulario na variavel dados*/
                     const dados = {
-                        nome: document.getElementById("nome").value,
-                        cpf: document.getElementById("cpf").value,
-                        email: document.getElementById("email").value,
-                        telefone: document.getElementById("telefone").value,
-                        deficiencia: document.getElementById("deficiencia").value
+                        nome: document.getElementById("nome").value.trim(),
+                        cpf: document.getElementById("cpf").value.replace(/\D/g, ""),
+                        email: document.getElementById("email").value.trim(),
+                        telefone: document.getElementById("telefone").value.trim(),
+                        deficiencia: document.getElementById("eSurdo").value
                     };
 
+                    if (!dados.nome || !dados.cpf || !dados.email || !dados.telefone || dados.eSurdo === "") {
+                        alert("Preencha todos os campos.");
+                        return;
+                    }
+                    
                     /*Armazena no local do navegador como dados cadastro transformando em texto*/
                     localStorage.setItem(
                         "dadosCadastro",
