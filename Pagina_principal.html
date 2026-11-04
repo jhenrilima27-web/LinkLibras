@@ -21,7 +21,7 @@
 
     <div class="barra-pesquisa">
         <img src="imagens-thiago/lupa.png" alt="">
-        <input type="text" placeholder="Encontre um intérprete">
+        <input type="text" id="inputBuscaNome" placeholder="Encontre um intérprete">
     </div>
 
     <div class="menu">
@@ -45,7 +45,10 @@
 
 <section class="banner">
 
-    <img src="imagens-thiago/banner.png">
+    <video autoplay loop muted playsinline>
+        <source src="videos/hero.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+    </video>
 
 </section>
 
@@ -53,7 +56,7 @@
 <div class="preco-cidade">
     <div class="cidade">
         <div class="cidade-h1">Escolha a sua cidade</div>
-        <div class="cidade-h2"><img src="imagens-thiago/pin.png" alt="pin"><input type="text" placeholder="Ex: São Paulo"></div>    
+        <div class="cidade-h2"><img src="imagens-thiago/pin.png" alt="pin"><input type="text" id="inputCidade" placeholder="Ex: São Paulo"></div>    
     </div>
     <div class="preco">
         <div class="preco-h1">Preço máximo por hora</div>
