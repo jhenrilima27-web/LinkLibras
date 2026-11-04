@@ -30,7 +30,7 @@ button, .button a , .button_atualizar a{
     font-size:15px;
     color: rgb(235, 235, 235);
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .botao_informacoes {
@@ -146,7 +146,7 @@ select {
     background-origin: border-box;
     background-clip: padding-box, border-box;
 
-    color: gray;
+    
     font-family: Arial, sans-serif;
 }
 
@@ -226,7 +226,7 @@ select {
     justify-content: center;
     width: 190px;/*tamanho da imagem da logo*/
     align-items:center;
-    margin-bottom: 440px;
+    margin-bottom: 455px;
 }
 
 .logo_cadastro3{
@@ -235,7 +235,7 @@ select {
     justify-content: center;
     width: 190px;/*tamanho da imagem da logo*/
     align-items:center;
-    margin-bottom: 330px;
+    margin-bottom: 360px;
 }
 /*--------Pagina cadastro de interprete-------*/
 
