@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar os Interpretes</title>
+    <link rel="stylesheet" href="styleJoao.css">
+</head>
+<body class="body_interpretes">
+
+    <img src="img/fundo_login.jpeg" class="fundo">
+
+    <a href="index.html">
+        <img class="voltar" src="img/Arrow_left.svg">
+    </a>
+
+    <img src="img/LogoMãospng.png" class="logo_interprete">
+
+    <div class="container_cadastro_interpretes">
+
+        <form id="formInterprete2">
+
+            <h1>Cadastro</h1>
+
+            <center>
+            <h2>Endereço</h2><br>
+            </center>
+
+            <div class="linha">
+
+                <div class="campo">
+                    <label for="cep"><strong>CEP: </strong></label>
+                    <input type="text" id="cep" name="cep" maxlength="9" placeholder="Digite seu CEP">
+                </div>
+
+                <div class="campo">
+                    <label for="estado">
+                        <strong>Estado:</strong>
+                    </label>
+                    <input type="text" id="estado" name="estado" placeholder="Digite seu estado">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="campo">
+                    <label for="bairro">
+                        <strong>Bairro:</strong>
+                    </label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro">
+                </div>
+
+                <div class="campo">
+                    <label for="cidade">
+                        <strong>Cidade:</strong>
+                    </label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade">
+                </div>
+             </div>
+
+
+            <div>
+                <label for="complemento"><strong>Complemento:</strong></label>
+                <input type="text" id="complemento" name="complemento" placeholder="Digite o Complemento">
+            </div><br><br>
+
+            <center>
+                <button type="submit">
+                    Continuar
+                </button>
+            </center>
+        </form>
+    </div>
+
+<script>
+    document.getElementById("formInterprete1").addEventListener("submit", function(evento) {
+
+    evento.preventDefault();
+
+    const formulario = document.getElementById("formInterprete1");
+
+    const dados = Object.fromEntries(
+        new FormData(formulario).entries() 
+    );
+
+    // Guarda temporariamente os dados da primeira página
+    sessionStorage.setItem(
+        "dadosCadastroInterprete",
+        JSON.stringify(dados)
+    );
+
+
+    // Avança para a segunda página
+    window.location.href = "Pagina_cadastro_interprete2.html";
+});
+
+</script>
+</body>
+</html>
