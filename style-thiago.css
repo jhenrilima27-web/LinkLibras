@@ -389,6 +389,24 @@ text-decoration: none;
 color: inherit;
 }
 
+/* Botão visual "Contatar" dentro do card */
+.btn-card-contatar {
+    margin-top: auto; /* Empurra o botão para o final */
+    background-color: #08881f; /* Verde do seu projeto */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 40px; /* Bordas arredondadas */
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    width: 100%; /* Ocupa toda a largura */
+}
+
+.card:hover .btn-card-contatar {
+    background-color: #0E3A99; /* Fica azul ao passar o mouse */
+}
+
 .card:hover{
 transform: scale(1.015);
 transition: all 0.2s ease;
@@ -396,7 +414,7 @@ cursor: pointer;
 }
 
 .imagem {
-    height: 58%;
+    height: 50%;
 }
 
 .imagem img{
@@ -412,20 +430,21 @@ display: block;
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
-    padding: 5px 18px 20px 18px;
-    height: 42%;
+    padding: 10px 18px 15px 18px;
+    height: 50%;
     gap: 5px;
     flex: 1;
 
 }
 .nome-pessoa {
-position: absolute; /* Permite movimentar o texto livremente sobre a imagem */
-bottom: 38%; /* Centraliza verticalmente */
-left: 26%; /* Centraliza horizontalmente */
-transform: translate(-50%, -50%); /* Ajusta o texto exatamente para o centro */
-color: white; /* Cor do texto */
-font-size: 34px;
-font-weight: 700;
+    position: absolute;
+    top: 180px; /* Cola o nome na parte de baixo da imagem */
+    left: 14px;   /* Alinha à esquerda */
+    transform: none; /* Remove aquele translate do meio */
+    color: white;
+    font-size: 34px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra para dar leitura sobre a foto */
 }
 .localizacao-nota {
     display: flex;
@@ -470,10 +489,13 @@ font-weight: 700;
 }
 
 .habilidades {
-    display:flex;
+    display: flex;
     justify-content: left;
     gap: 6px;
+    flex-wrap: nowrap; /* Força tudo a ficar na mesma linha */
+    overflow: hidden; /* Esconde o que passar do limite do card */
 }
+
 .habilidades > div {
     display: inline-block;
     padding: 4px 8px;
@@ -482,6 +504,12 @@ font-weight: 700;
     font-size: 16px;
     font-weight: 500;
     border-radius: 40px;
+    
+    /* Impede que o texto quebre dentro do botão e adiciona os "..." */
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    flex-shrink: 0; /* Impede que os botões sejam esmagados */
 }
 
 .descricao-pessoa {
@@ -1037,6 +1065,7 @@ footer img{
         font-size: 32px;
         padding: 40px 16px;
     }
+    
 }
 
 

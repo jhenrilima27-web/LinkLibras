@@ -4,47 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Arquivo CSS -->
     <link rel="stylesheet" href="styleArthur.css" />
-
-    <!-- Import de ícones - Google Icons -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-    />
-
-    <!-- Import de ícones - Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <title>Perfil</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Perfil - LinkLibras</title>
   </head>
   <body>
     <div class="header_perfil">
-      <a href="Pagina_principal.html">
-        <img class="voltar" src="img/Arrow_left.svg">
+      <a href="index.html"> <!-- Ajuste para o nome da sua página principal -->
+        <img class="voltar" src="img/Arrow_left.svg" />
       </a>
-
       <img src="img/LogoMãospng.png" alt="logo" class="logo_perfil" />
     </div>
 
-    <!-- Duas colunas -->
     <div class="container_perfil">
       <!-- Coluna 1 -->
       <div class="perfil_descricao">
-        <!-- Descrição e habilidades -->
         <div class="dados_perfil">
           <div>
             <h2>Descrição</h2>
-            <p>
-              Me chamo Renato, sou um tradutor e intérprete dedicado a promover
-              a acessibilidade comunicativa e a inclusão da comunidade de
-              deficientes auditivos.
-              <br />
-              Fluente na articulação entre a Lingua Brasileira de Sinais
-              (Libras) e o Português.
-            </p>
+            <p id="perfil-descricao">Carregando descrição...</p>
           </div>
           <div>
             <h2>Habilidades</h2>
@@ -56,14 +35,8 @@
           </div>
         </div>
 
-        <!-- Chips habilidades -->
-        <div class="chips">
-          <span class="chip"> Eventos </span>
-
-          <span class="chip"> Presencial </span>
-
-          <span class="chip"> Inglês </span>
-        </div>
+        <!-- Chips habilidades (Vão ser preenchidos pelo JS) -->
+        <div class="chips" id="perfil-especialidades"></div>
 
         <hr />
 
@@ -118,22 +91,25 @@
       <!-- Coluna 2 -->
       <div class="perfil_info">
         <div class="foto_usuario_container">
-          <img src="img/Renato.jpg" />
+          <img id="perfil-foto" src="img/Renato.jpg" /> <!-- Fallback inicial -->
         </div>
         <div class="dados_usuario">
-          <span class="nome">Renato</span>
-          <span class="endereco_1">SP - São José dos Campos</span>
-          <span class="endereco_2">Jardim Esplanada</span>
+          <span class="nome" id="perfil-nome">Carregando...</span>
+          <span class="endereco_1" id="perfil-estado-cidade"></span>
+          <span class="endereco_2" id="perfil-bairro"></span>
         </div>
         <div class="preco">
           <span>Preço/h:</span>
-          <span>R$ 129,00</span>
+          <span id="perfil-preco">R$ 0,00</span>
         </div>
-        <button class="btn_contato">
+        <button class="btn_contato" id="btn-whatsapp">
           <span>Entrar em contato</span>
           <i class="fa-brands fa-whatsapp"></i>
         </button>
       </div>
     </div>
+
+    <!-- Script da página de perfil -->
+    <script src="script-perfil.js"></script>
   </body>
 </html>

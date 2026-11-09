@@ -220,6 +220,7 @@ function renderizarCards(interpretes) {
                     <div class="preco-pessoa">
                         R$${interprete.valorHora ?? 0}/h
                     </div>
+                    <div class="btn-card-contatar">Contatar</div>
                 </div>
             </a>
         `;
