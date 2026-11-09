@@ -18,7 +18,7 @@
 
     <div class="container_cadastro_interpretes">
 
-        <h1>Cadastro de Intérpretes</h1><br>
+        
 
         <form id="formInterprete1">
 
@@ -94,26 +94,53 @@
     </div>
 
 <script>
-	
-document.getElementById("formInterprete1").addEventListener("submit", function(evento) {
+
+
+const formulario = document.getElementById("formInterprete1");
+
+// Recupera os dados que já foram salvos anteriormente
+const dadosSalvos = sessionStorage.getItem("dadosCadastroInterprete");
+
+const dadosAnteriores = dadosSalvos
+    ? JSON.parse(dadosSalvos)
+    : {};
+
+// Preenche automaticamente os campos da página 1
+Object.entries(dadosAnteriores).forEach(function([chave, valor]) {
+
+    const campo = formulario.elements.namedItem(chave);
+
+    if (campo && campo.type !== "file") {
+        campo.value = valor;
+    }
+
+});
+
+// Salva os dados ao clicar em Continuar
+formulario.addEventListener("submit", function(evento) {
 
     evento.preventDefault();
 
-    const formulario = document.getElementById("formInterprete1");
-
-    const dados = Object.fromEntries(
-        new FormData(formulario).entries() 
+    // Captura os dados preenchidos na página 1
+    const dadosPagina1 = Object.fromEntries(
+        new FormData(formulario).entries()
     );
 
-    // Guarda temporariamente os dados da primeira página
+    // Junta os dados novos com os dados que já estavam salvos
+    const dadosCompletos = {
+        ...dadosAnteriores,
+        ...dadosPagina1
+    };
+
+    // Atualiza o armazenamento temporário
     sessionStorage.setItem(
         "dadosCadastroInterprete",
-        JSON.stringify(dados)
+        JSON.stringify(dadosCompletos)
     );
 
-
-    // Avança para a segunda página
+    // Avança para a página 2
     window.location.href = "Pagina_cadastro_interprete2.html";
+
 });
 
 

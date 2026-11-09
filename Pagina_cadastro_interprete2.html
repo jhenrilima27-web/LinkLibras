@@ -64,6 +64,10 @@
             </div><br><br>
 
             <center>
+                <button type="button" onclick="voltarPagina()">
+                    Voltar
+                </button>
+
                 <button type="submit">
                     Continuar
                 </button>
@@ -72,26 +76,70 @@
     </div>
 
 <script>
-    document.getElementById("formInterprete1").addEventListener("submit", function(evento) {
 
-    evento.preventDefault();
+    // Recupera os dados pessoais preenchidos na página 1
+    const dadosSalvos = sessionStorage.getItem("dadosCadastroInterprete");
 
-    const formulario = document.getElementById("formInterprete1");
+    // Verifica se existem dados da primeira página
+    if (!dadosSalvos) {
+        alert("Preencha primeiro seus dados pessoais.");
+        window.location.href = "Pagina_cadastro_interprete1.html";
+    } else {
 
-    const dados = Object.fromEntries(
-        new FormData(formulario).entries() 
-    );
-
-    // Guarda temporariamente os dados da primeira página
-    sessionStorage.setItem(
-        "dadosCadastroInterprete",
-        JSON.stringify(dados)
-    );
+        const formulario = document.getElementById("formInterprete2");
+    
 
 
-    // Avança para a segunda página
-    window.location.href = "Pagina_cadastro_interprete2.html";
-});
+        // Recupera os dados anteriores
+        const dadosAnteriores = JSON.parse(dadosSalvos);
+
+
+        // Preenche os campos caso o usuário volte à página 2
+     Object.entries(dadosAnteriores).forEach(function([chave, valor]) {
+
+         const campo = formulario.elements.namedItem(chave);
+
+            if (campo && campo.type !== "file") {
+                campo.value = valor;
+            }
+
+        });
+
+        // Evento do botão Continuar
+        formulario.addEventListener("submit", function(evento) {
+
+            evento.preventDefault();
+
+
+        // Captura os dados de endereço
+    
+        const dadosEndereco = Object.fromEntries(
+         new FormData(formulario).entries() 
+        );
+
+        // Junta os dados pessoais com os dados de endereço
+        const dadosCompletos = {
+            ...dadosAnteriores,
+          ...dadosEndereco
+        };
+
+     // Salva tudo novamente no sessionStorage
+        sessionStorage.setItem(
+            "dadosCadastroInterprete",
+            JSON.stringify(dadosCompletos)
+        );
+
+
+        // Avança para a segunda página
+        window.location.href = "Pagina_cadastro_interprete3.html";
+    });
+
+}
+
+// Função para voltar à página anterior
+function voltarPagina() {
+    window.location.href = "Pagina_cadastro_interprete1.html";
+}
 
 </script>
 </body>
