@@ -25,6 +25,97 @@ const dadosAnteriores = dadosSalvos ? JSON.parse(dadosSalvos) : {};
 
 });
 
+// Carrega as especialidades disponíveis no banco de dados
+async function carregarEspecialidades() {
+
+    const container = document.getElementById("containerEspecialidades");
+
+    // Categorias disponíveis no backend
+    const categorias = [
+        { nome: "Modalidade", endpoint: "modalidade" },
+        { nome: "Área de atuação", endpoint: "area_atuacao" },
+        { nome: "Recursos", endpoint: "recurso" },
+        { nome: "Disponibilidade", endpoint: "disponibilidade" },
+        { nome: "Idiomas", endpoint: "idioma" }
+    ];
+
+
+ // Recupera as especialidades já selecionadas anteriormente
+    const selecionadas = Array.isArray(dadosAnteriores.especialidades)
+        ? dadosAnteriores.especialidades.map(Number)
+        : [];
+
+    container.innerHTML = "";
+
+    try {
+
+        for (const categoria of categorias) {
+
+            const resposta = await fetch(
+                `http://localhost:8081/api/especialidades/categoria/${categoria.endpoint}`
+            );
+            if (!resposta.ok) {
+                throw new Error("Não foi possível carregar as especialidades.");
+            }
+
+            const especialidades = await resposta.json();
+
+
+            // Cria um bloco para cada categoria
+            const bloco = document.createElement("div");
+            bloco.classList.add("bloco-categoria");
+
+            // Cria o título da categoria
+            const titulo = document.createElement("h3");
+            titulo.textContent = categoria.nome;
+
+            bloco.appendChild(titulo);
+
+            // Cria as opções da categoria
+            const grupo = document.createElement("div");
+            grupo.classList.add("grupo-especialidades");
+
+            especialidades.forEach(function(especialidade) {
+
+                const label = document.createElement("label");
+                const checkbox = document.createElement("input");
+
+                checkbox.type = "checkbox";
+                checkbox.name = "especialidades";
+                checkbox.value = especialidade.idEspecialidade;
+
+                 // Mantém marcada uma opção selecionada anteriormente
+                checkbox.checked = selecionadas.includes(
+                    Number(especialidade.idEspecialidade)
+                );
+
+                label.appendChild(checkbox);
+                label.appendChild(
+                    document.createTextNode(" " + especialidade.nome)
+                );
+
+                grupo.appendChild(label);
+            });
+
+            bloco.appendChild(grupo);
+
+            container.appendChild(bloco);
+        }
+
+    } catch (erro) {
+
+        console.error("Erro ao carregar especialidades:", erro);
+
+        container.innerHTML =
+            "<p>Não foi possível carregar as especialidades. Tente novamente.</p>";
+    }
+}
+
+
+// Executa o carregamento
+carregarEspecialidades();
+
+
 // Mostra o nome da foto selecionada
 document.getElementById("foto").addEventListener("change", function() {
 
