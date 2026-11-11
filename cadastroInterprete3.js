@@ -175,7 +175,7 @@ function voltarPagina() {
 }
 
 // Evento de finalização do formulário
-formulario.addEventListener("submit", function(evento) {
+formulario.addEventListener("submit", async function(evento) {
 
     evento.preventDefault();
 
@@ -220,7 +220,23 @@ formulario.addEventListener("submit", function(evento) {
     const envio = new FormData();
 
     Object.entries(dadosCompletos).forEach(function([chave, valor]) {
-        envio.append(chave, valor);
+
+        if (valor === nul || valor === undefined) {
+            return;
+        }
+
+        // Envia cada especialidade separadamente
+        if (Array.isArray(valor)) {
+
+            valor.forEach(function(item) {
+                envio.append(chave, item);
+            });
+
+        } else {
+
+            envio.append(chave, valor);
+        }
+        
     });
 
     // Acrescenta a senha, que não foi salva no sessionStorage
@@ -231,10 +247,39 @@ formulario.addEventListener("submit", function(evento) {
         envio.append("foto", foto);
     }
 
-    // Exibe os dados preparados no console
-    console.log("Dados do cadastro preparados para envio.");
-    console.log("Campos preparados:", [...envio.keys()]);
+    try {
+        const resposta = await fetch(
+            "http://localhost:8081/api/auth/interpretes/cadastro",
+            {
+                method: "POST",
+                body: envio
+            }
+        );
 
-    alert("Os dados foram reunidos! Agora podemos preparar a integração com o servidor.");
+        const resultado = await resposta.json();
 
+        if (!resposta.ok) {
+            console.error("Erro no cadastro:", resultado);
+
+            alert(
+                resultado.message || "Não foi possível realizar o cadastro."
+            );
+            return;
+        }
+
+        console.log("Cadastro realizado:", resultado);
+
+        alert("Cadastro de intérprete realizado com sucesso!");
+
+        // Limpa os dados temporários
+        sessionStorage.removeItem("dadosCadastroInterprete");
+
+    } catch (erro) {
+
+        console.error("Erro ao conectar com o servidor:", erro);
+
+        alert("Não foi possível conectar ao servidor.");
+    }
+
+    
 });
