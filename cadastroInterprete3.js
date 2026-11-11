@@ -15,7 +15,7 @@ if (!dadosSalvos) {
 const dadosAnteriores = dadosSalvos ? JSON.parse(dadosSalvos) : {};
 
 // Preenche os campos caso o usuário volte para esta página
-["valorHora", "descricao", "especialidades"].forEach(function(campo) {
+["valorHora", "descricao"].forEach(function(campo) {
 
     const elemento = document.getElementById(campo);
 
@@ -132,24 +132,32 @@ document.getElementById("foto").addEventListener("change", function() {
 // Função para salvar os dados profissionais
 function salvarDadosProfissionais() {
 
+    // Recupera os IDs das especialidades selecionadas
+    const especialidadesSelecionadas = Array.from(
+        document.querySelectorAll(
+            '#containerEspecialidades input[name="especialidades"]:checked'
+        )
+    ).map(function(checkbox) {
+        return Number(checkbox.value);
+    });
+
     const dadosProfissionais = {
 
         valorHora: document.getElementById("valorHora").value,
 
         descricao: document.getElementById("descricao").value,
 
-        especialidades: document.getElementById("especialidades").value
+        especialidades: especialidadesSelecionadas
 
     };
 
-// Junta os dados anteriores com os profissionais
+     // Junta os dados anteriores com os profissionais
     const dadosCompletos = {
         ...dadosAnteriores,
         ...dadosProfissionais
     };
 
-
-// Atualiza o armazenamento temporário
+    // Atualiza o armazenamento temporário
     sessionStorage.setItem(
         "dadosCadastroInterprete",
         JSON.stringify(dadosCompletos)
