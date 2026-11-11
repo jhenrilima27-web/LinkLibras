@@ -271,6 +271,8 @@ formulario.addEventListener("submit", async function(evento) {
 
         alert("Cadastro de intérprete realizado com sucesso!");
 
+        window.location.href = "Pagina_Login.html"
+
         // Limpa os dados temporários
         sessionStorage.removeItem("dadosCadastroInterprete");
 
