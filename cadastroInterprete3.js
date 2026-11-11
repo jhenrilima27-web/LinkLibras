@@ -221,7 +221,7 @@ formulario.addEventListener("submit", async function(evento) {
 
     Object.entries(dadosCompletos).forEach(function([chave, valor]) {
 
-        if (valor === nul || valor === undefined) {
+        if (valor === null || valor === undefined) {
             return;
         }
 
