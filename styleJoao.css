@@ -245,9 +245,8 @@ select {
     display:flex;
     justify-content:center;
     align-items:flex-start;
-    min-height: 100vh;
-    height:auto;
-    padding-bottom: 300px;
+    height: 100vh;
+    
 }
 
 
@@ -258,7 +257,7 @@ select {
     align-items: center;
     padding:30px;
     border-radius:10px;
-    margin-top: 180px;
+    margin-top: 200px;
 }
 
 input:focus,
@@ -270,7 +269,7 @@ select:focus {
 .logo_interprete{
     display: block;
     position: fixed;
-    top: 10px;
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
     width: 190px;/*tamanho da imagem da logo*/
