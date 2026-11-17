@@ -187,6 +187,16 @@ function renderizarCards(interpretes) {
         const nome = interprete.nome || "Sem nome";
         const primeiroNome = nome.split(" ")[0];
 
+        const foto = interprete.foto?.trim();
+        const imagemHTML = foto
+             ? `<img class="foto-interprete" src="${foto}" alt="Foto de ${nome}">`
+    : `
+        <div class="foto-placeholder">
+            <span>${primeiroNome.charAt(0).toUpperCase()}</span>
+            <small>Foto não disponível</small>
+        </div>
+    `;
+
         const especialidades = Array.isArray(interprete.especialidades)
             ? interprete.especialidades
             : [];
@@ -194,7 +204,7 @@ function renderizarCards(interpretes) {
         card.innerHTML = `
             <a href="perfil.html?id=${interprete.id}" style="text-decoration: none; color: inherit;">
                 <div class="imagem">
-                    <img src="${interprete.foto || 'imagens/pessoa1.png'}" alt="${nome}">
+                    ${imagemHTML}
                     <div class="nome-pessoa">${primeiroNome}</div>
                 </div>
                 <div class="dados">
@@ -224,6 +234,23 @@ function renderizarCards(interpretes) {
                 </div>
             </a>
         `;
+
+        const img = card.querySelector(".foto-interprete");
+
+if (img) {
+    img.addEventListener("error", function() {
+        const placeholder = document.createElement("div");
+
+        placeholder.className = "foto-placeholder";
+        placeholder.innerHTML = `
+            <span>${primeiroNome.charAt(0).toUpperCase()}</span>
+            <small>Foto não disponível</small>
+        `;
+
+         img.replaceWith(placeholder);
+    
+    });
+}
 
         cardsContainer.appendChild(card);
     });

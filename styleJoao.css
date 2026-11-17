@@ -246,7 +246,8 @@ select {
     justify-content:center;
     align-items:flex-start;
     height: 100vh;
-    
+    height:auto;
+    padding-bottom: 30px;
 }
 
 
