@@ -51,6 +51,17 @@ async function carregarPerfil(id) {
             // Botão de Whatsapp
             const btnWhats = document.getElementById("btn-whatsapp");
             btnWhats.onclick = () => {
+
+                // verifica se existe um usuário autenticado
+                const usuarioLogado = localStorage.getItem("token");
+
+                if (!usuarioLogado) {
+                    alert("Para entrar em contato com o intérprete, você precisa fazer login ou cadastrar uma conta.");
+
+                    window.location.href = "Pagina_login.html";
+                    return;
+                }
+                
                 if (interprete.telefone) {
                     // Limpa o telefone (remove parênteses, traços e espaços)
                     let numeroLimpo = interprete.telefone.replace(/\D/g, '');
