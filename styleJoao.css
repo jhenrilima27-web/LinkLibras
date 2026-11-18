@@ -509,6 +509,9 @@ select:focus {
     margin-top: 10px;
 }
 
+[hidden] {
+    display: none !important;
+}
 
 
 /* --------- Especialidades do cadastro de intérprete --------- */

@@ -105,6 +105,7 @@
             <script>
                 /*Define função botão*/
                async function salvarPagina1(){
+                alert("A função foi executada!");
 
                     /*Captura os dados do formulario na variavel dados*/
                     const dados = {
@@ -123,7 +124,16 @@
                         return;
                     }
 
-                    const foto = document.getElementById("foto").file[0];
+                   
+
+                    const campoFoto = document.getElementById("foto");
+
+                    console.log("Campo encontrado:", campoFoto);
+                    console.log("Tipo do campo:", campoFoto?.type);
+                    console.log("Arquivos:", campoFoto?.files);
+
+                    const foto = campoFoto?.files?.[0] || null;
+                    
 
                     function validarFoto(arquivo) {
                         if (!arquivo) return true;
@@ -178,6 +188,7 @@
                     }
 
                 
+
                 }
             </script>
 

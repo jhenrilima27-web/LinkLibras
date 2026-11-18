@@ -20,9 +20,9 @@
         <foto class="foto">
 
             <div class="foto_nome">
-                <img src="img/Foto_perfil_surdo.webp">
-                <h2 class="nome_perfil">Jaime Lima dos Santos</h2>
-                <h1 class="deficiencia">Surdo</h1>
+                <img src="img/Foto_perfil_surdo.webp" id="fotoPerfil" alt="Foto de perfil">
+                <h2 class="nome_perfil" id="nomeTopo">Carregando...</h2>
+                <h1 class="deficiencia" id="perfilTipo"></h1>
             </div>
             
         </foto>
@@ -34,12 +34,12 @@
                 <div class="linha">
                     <div class="campo">
                         <h4>Nome:</h4>
-                        <button class="botao_informacoes"> Jaime Lima dos Santos</button>
+                        <button class="botao_informacoes" id="nomePerfil">Carregando...</button>
                     </div>
 
                     <div class="campo">
                         <h4>Telefone:</h4>
-                        <button class="botao_informacoes">(11)99999-9999</button>
+                        <button class="botao_informacoes" id="telefonePerfil">Carregando...</button>
                     </div>
 
                 </div>
@@ -47,12 +47,12 @@
                 <div class="linha">
                     <div class="campo">
                         <h4>Email:</h4>
-                        <button class="botao_informacoes">Jaiminho123@gmail.com</button>
+                        <button class="botao_informacoes" id="emailPerfil">Carregando...</button>
                     </div>
 
                     <div class="campo">
-                        <h4>Deficiencia:</h4>
-                        <button class="botao_informacoes"> Surdo</button>
+                        <h4 id="labelCampoExtra">Deficiência:</h4>
+                        <button class="botao_informacoes" id="deficienciaPerfil">Carregando...</button>
                     </div>
 
                 </div>
@@ -60,14 +60,21 @@
                 <div class="linha">
                     <div class="campo">
                         <h4>Cidade:</h4>
-                        <button class="botao_informacoes"> Cotia</button>
+                        <button class="botao_informacoes" id="cidadePerfil"> Carregando...</button>
                     </div>
 
                     <div class="campo">
                         <h4>Estado:</h4>
-                        <button class="botao_informacoes"> São Paulo</button>
+                        <button class="botao_informacoes" id="estadoPerfil"> Carregando...</button>
                     </div>
 
+                </div>
+
+                <div class="linha" id="linhaValorHora" hidden>
+                    <div class="campo">
+                        <h4>Valor por hora:</h4>
+                        <button class="botao_informacoes" id="valorHoraPerfil">Carregando...</button>
+                    </div>
                 </div>
 
                 <div class="button_atualizar">
@@ -81,5 +88,123 @@
 
         </informacao> 
     </div>
+
+    <script>
+        async function carregarPerfil() {
+
+        const token = localStorage.getItem("token");
+
+        const dadosLogin = JSON.parse(
+            localStorage.getItem("usuarioLogado") || "{}"
+        );
+
+        const perfil = dadosLogin.perfil;
+
+        if (!token || !perfil) {
+            alert("Você precisa entrar na sua conta.");
+            window.location.href = "Pagina_Login.html";
+            return;
+        }
+
+
+        try {
+
+            const resposta = await fetch(
+                "http://localhost:8081/api/auth/me",
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível carregar o perfil.");
+        }
+
+        const dadosPerfil = await resposta.json();
+
+        console.log("Dados do perfil:", dadosPerfil);
+        console.log("Tipo de perfil:", perfil);
+
+        // Dados comuns aos dois perfis
+        document.getElementById("nomeTopo").textContent =
+            dadosPerfil.nome || "Nome não informado";
+
+        document.getElementById("fotoPerfil").src =
+            dadosPerfil.foto || "img/Foto_perfil_surdo.webp";
+
+        document.getElementById("nomePerfil").textContent =
+            dadosPerfil.nome || "Não informado";
+
+        document.getElementById("telefonePerfil").textContent =
+            dadosPerfil.telefone || "Não informado";
+
+        document.getElementById("emailPerfil").textContent =
+            dadosPerfil.email || "Não informado";
+
+        document.getElementById("cidadePerfil").textContent =
+            dadosPerfil.cidade || "Não informado";
+
+        document.getElementById("estadoPerfil").textContent = 
+            dadosPerfil.estado || "Não informado";
+
+        
+        // Configurações específicas de cada perfil
+        if (perfil === "USUARIO") {
+
+            document.getElementById("perfilTipo").textContent = 
+                dadosPerfil.eSurdo ? "Usuário surdo" : "Usuário ouvinte";
+
+            document.getElementById("labelCampoExtra").textContent = 
+                "Deficiência:";
+
+            document.getElementById("deficienciaPerfil").textContent = 
+                dadosPerfil.eSurdo ? "Surdo" : "Ouvinte";
+
+            document.getElementById("linhaValorHora").hidden = true;
+            
+        } else if (perfil === "INTERPRETE") {
+
+            document.getElementById("perfilTipo").textContent =
+                "Intérprete";
+
+            document.getElementById("labelCampoExtra").textContent =
+                "Descrição profissional:";
+
+            document.getElementById("deficienciaPerfil").textContent =
+                dadosPerfil.descricao || "Não informada";
+
+            document.getElementById("linhaValorHora").hidden = false;
+
+            const valor = dadosPerfil.valorHora;
+
+            document.getElementById("valorHoraPerfil").textContent =
+                valor != null
+                    ? Number(valor).toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL"
+                    })
+                    : "Não informado";
+
+        } else {
+
+            throw new Error("Tipo de perfil inválido.");
+        }
+
+    
+    } catch (erro) {
+
+        console.error("Erro ao carregar perfil:", erro);
+        alert("Não foi possível carregar seus dados.");
+
+    }
+}
+
+document.addEventListener("DOMContentLoaded", carregarPerfil);
+
+</script>
 </body>
 </html>
