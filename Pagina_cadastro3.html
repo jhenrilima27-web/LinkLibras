@@ -103,6 +103,39 @@
         //Adiciona a senha aos dados
         dados.senha = senha;
 
+        const formulario = new FormData();
+
+        // Adiciona os dados do cadastro
+        Object.entries(dados).forEach(([chave, valor]) => {
+             formulario.append(chave, valor);
+});
+
+
+        // Recupera a foto armazenada na primeira página
+        const fotoData = sessionStorage.getItem("fotoCadastro");
+
+        if (fotoData) {
+
+            const partes = fotoData.split(",");
+            const tipo = partes[0].match(/:(.*?);/)[1];
+            const dadosImagem = atob(partes[1]);
+
+            const bytes = new Uint8Array(dadosImagem.length);
+
+            for (let i = 0; i < dadosImagem.length; i++) {
+                bytes[i] = dadosImagem.charCodeAt(i);
+            }
+
+            const extensao = tipo.split("/")[1];
+
+            const arquivoFoto = new File(
+                [bytes],
+                `foto-perfil.${extensao}`,
+                { type: tipo }
+            );
+
+    formulario.append("foto", arquivoFoto);
+}
 
         try {
 
@@ -110,11 +143,8 @@
                 "http://localhost:8081/api/auth/usuarios/cadastro",
                 {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    body: formulario
                     // envia os dados
-                    body: JSON.stringify(dados)
                 }
             );
 
@@ -134,6 +164,7 @@
         alert("Cadastro realizado com sucesso!");
 
         localStorage.removeItem("dadosCadastro");
+        sessionStorage.removeItem("fotoCadastro");
 
         window.location.href = "Pagina_Login.html";
 

@@ -77,16 +77,22 @@
                 </div>
             </div>
 
+            <div class="linha">
+                <div class="campo">
+                    <label for="eSurdo"><strong>Você tem deficiência auditiva?</strong></label>
 
-        <div class="campo">
-            <label for="eSurdo"><strong>Você tem deficiência auditiva?</strong></label>
+                        <select id="eSurdo" name="eSurdo">
+                        <option value="">Selecione</option>
+                        <option value="true">Sim</option>
+                        <option value="false">Não</option>
+                         </select>
+                 </div>
 
-            <select id="eSurdo" name="eSurdo">
-                <option value="">Selecione</option>
-                <option value="true">Sim</option>
-                <option value="false">Não</option>
-            </select>
-        </div>
+                 <div class="campo">
+                    <label for="foto"><strong>Foto de perfil:</strong></label>
+                    <input type="file" id="foto" accept="image/jpeg, image/png, image/webp">
+                 </div>
+            </div>
             
             <center>
                 <div class="button">
@@ -98,7 +104,7 @@
 
             <script>
                 /*Define função botão*/
-                function salvarPagina1(){
+               async function salvarPagina1(){
 
                     /*Captura os dados do formulario na variavel dados*/
                     const dados = {
@@ -117,14 +123,61 @@
                         return;
                     }
 
+                    const foto = document.getElementById("foto").file[0];
+
+                    function validarFoto(arquivo) {
+                        if (!arquivo) return true;
+                       
+                        const formatosPermitidos = [
+                            "image/jpeg",
+                            "image/png",
+                            "image/webp"
+                        ];
+
+                        if (!formatosPermitidos.includes(arquivo.type)) {
+                            alert("Selecione uma imagem JPG, PNG ou WEBP.");
+                            return false;
+                        }
+
+                         if (arquivo.size > 2 * 1024 * 1024) {
+                            alert("A foto deve ter no máximo 2 MB.");
+                            return false;
+                        }
+
+                        return true;
+                    }
+
+                    if (!validarFoto(foto)) {
+                        return;
+                    }
+
                     /*Armazena no local do navegador como dados cadastro transformando em texto*/
                     localStorage.setItem(
                         "dadosCadastro",
                         JSON.stringify(dados)
                     );
 
-                    /*Leva a proxima página*/
-                    window.location.href = "Pagina_cadastro2.html";
+                    
+                    // Guarda a foto temporariamente para as próximas páginas
+                    if (foto) {
+                        const leitor = new FileReader();
+
+                        leitor.onload = function () {
+                            sessionStorage.setItem("fotoCadastro", leitor.result);
+                            window.location.href = "Pagina_cadastro2.html";
+                        };
+                        
+                        leitor.onerror = function () {
+                            alert("Não foi possível carregar a foto.");
+                        };
+
+                        leitor.readAsDataURL(foto);
+                    } else {
+                        sessionStorage.removeItem("fotoCadastro");
+                        window.location.href = "Pagina_cadastro2.html";
+                    }
+
+                
                 }
             </script>
 
