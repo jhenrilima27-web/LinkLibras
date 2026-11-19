@@ -94,20 +94,31 @@ a{
 
 .body-login {
     margin: 0;  /*margem para cima e para baixo*/
-    height: 100vh;  /*Altura da tela 100*/
+    min-height: 100vh;  /*Altura da tela 100*/
     display: flex;  /*Sistema de alinhamento */
     justify-content: center;  /*centralizar na horizontal*/
     align-items: center;  /*centralizar na vertical*/
     font-family: Arial, sans-serif;  /*Escolha da fonte */
+    box-sizing: border-box;
+    position: relative;
+    padding: 170px 20px 40px;
 }
 
 .login-container {
     background-color: transparent;  /*Cor de fundo*/
-    padding: 30px;  /*espaço interno*/
+    padding: 40px;  /*espaço interno*/
     border-radius: 15px;  /*Bordas arredondadas*/
-    margin-top: 90px;
     width: 100%;  /*Ocupa o máximo de Largura possivel*/
-    max-width: 650px; /*Limite de tamanho*/
+    max-width: 800px; /*Limite de tamanho*/
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.login-container h1 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 35px;
+    margin-top: 0;
 }
 
 h1{
@@ -132,13 +143,13 @@ input:not([type="radio"]) {
 }
 
 /*Personaliza os campos select*/
-input:not([type="radio"]),
-select {
+.login-container input:not([type="radio"]),
+.login-container select {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border-radius: 100px;
     margin-top: 5px;
-    font-size: 15px;
+    font-size: 16px;
     border: 3px solid transparent;
 
     background-image:
@@ -150,23 +161,27 @@ select {
 
     
     font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 
-input#senha.input_senha {
-    width: 70%;
+.login-container input#senha {
+    width: 100%;
 }
 
-input#senha2.input_senha {
-    width: 70%;
+.grupo-radio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 
 .botoes {
     display: flex;  /*Coloca os botões lado a lado*/
     justify-content: center;  /*Tudo a direita*/
-    gap: 10px;  /*Espaço entre os botões*/
-    margin-top: 20px;  /*espaço a cima deles*/
+    gap: 15px;  /*Espaço entre os botões*/
+    margin-top: 30px;  /*espaço a cima deles*/
     transition: 0.3s;
 }
 
@@ -176,68 +191,160 @@ input#senha2.input_senha {
 
 .logo_login{
     display: flex;
-    position: fixed;
+    position: absolute;
+    top: 155px;
+    left: 50%;
+    transform: translateX(-50%);
     justify-content: center;
     width: 190px;/*tamanho da imagem da logo*/
     align-items:center;
-    margin-bottom: 400px;
+    margin: 0;
 }
 
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+    .body-login {
+        padding: 120px 15px 30px;
+    }
+
+    .login-container {
+        padding: 25px 15px;
+    }
+
+    .login-container h1 {
+        font-size: 28px;
+    }
+
+    .botoes {
+        flex-wrap: wrap;
+    }
+}
 
 
 /*--------Pagina Cadastro--------*/
 
 .body-cadastro{
-    height: 100vh;
+    margin: 0;
+    min-height: 100vh;
+    height: auto;
     display:flex;
+    flex-direction: column;
     justify-content: center;  /*centralizar na horizontal*/
     font-family: Arial, sans-serif; /*fonte*/
     align-items:center;
+    position: relative;
+    padding: 140px 20px 40px;
+    box-sizing: border-box;
+}
+
+.body-cadastro .formulario {
+    width: 100%;
+}
+
+.body-cadastro .formulario h1 {
+    text-align: center;
+    font-size: 34px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.body-cadastro .formulario h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.body-cadastro .linha {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-bottom: 22px;
+}
+
+.body-cadastro .campo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 8px;
+}
+
+.body-cadastro .campo input:not([type="radio"]),
+.body-cadastro .campo select {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin-top: 0;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.body-cadastro .campo input[type="file"] {
+    border-radius: 10px;
+}
+
+/* BOTÃO */
+
+.body-cadastro .button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .label_senha {
     margin-left: 115px;
 }
 
-.linha {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
 
-.campo {
-    flex:1;
-    display: flex;
-    flex-direction: column;
-}
 
 select {
     cursor: pointer;
 }
 
 .container_cadastro{
-    width: 800px;
-    margin-top: 80px;
-    padding:30px;
-    border-radius:10px;
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding:40px;
+    border-radius:15px;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .logo_cadastro{
-    display: flex;
-    position: fixed;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     justify-content: center;
-    width: 190px;/*tamanho da imagem da logo*/
-    align-items:center;
-    margin-bottom: 455px;
+    width: 200px;/*tamanho da imagem da logo*/
+    margin: 0;
+    z-index: 2;
 }
 
-.logo_cadastro3{
-    display: flex;
-    position: fixed;
-    justify-content: center;
-    width: 190px;/*tamanho da imagem da logo*/
-    align-items:center;
-    margin-bottom: 360px;
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 650px) {
+
+    .body-cadastro {
+        padding: 120px 15px 30px;
+    }
+
+    .container_cadastro {
+        padding: 25px 15px;
+    }
+
+    .body-cadastro .linha {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .body-cadastro .formulario h1 {
+        font-size: 28px;
+    }
 }
 /*--------Pagina cadastro de interprete-------*/
 
@@ -439,19 +546,22 @@ select:focus {
     margin: 0;  /*margem para cima e para baixo*/
     height: 100vh;  /*Altura da tela 100*/
     font-family: Arial, sans-serif;  /*Escolha da fonte */
+    box-sizing: border-box;
 }
 
 .container_surdo {
     display: grid;
-    margin: 0px auto;
-    gap: 20px;
+    gap: 40px;
+    grid-template-areas:"foto informacao";
+    grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+    align-items: center;
 
-    grid-template-areas:
-        "foto informacao"
-        "foto informacao";
-
-    grid-template-columns: 400px 1fr;
-    grid-template-rows: 307px 306px;
+    width: 90%;
+    max-width: 1400px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 40px 0;
+    box-sizing: border-box;
 }
 
 .foto {
@@ -464,53 +574,113 @@ select:focus {
 .foto_nome {
     display: flex;
     flex-direction: column; /* Isso faz um ficar embaixo do outro */
-    justify-self: center;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 40px;
+    gap: 15px;
+    text-align: center;
 }
 
 .deficiencia {
     font-size: 25px;
     font-family: Arial, sans-serif;
     color: #007bffb9;
+    margin: 0;
 }
 
 .foto img {
-    width: 280px;
-    height: 280px;
+    width: 260px;
+    height: 260px;
     object-fit: cover;
-    border-radius: 400px;
+    border-radius: 50%;
 }
 
 .informacao {
     grid-area: informacao;
+    min-width: 0;
 }
 
 .container_inf_surdo {
-    width: 800px;
+    width: 100%;
     max-width:800px;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
     padding:30px;
     border-radius:10px;
-    margin-top: 90px;
     background-color: #007bff1e;
+    box-sizing: border-box;
 }
 
 .nome_perfil {
     color: black;
+    margin: 0;
 }
+
+.container_inf_surdo h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.linha {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 8px;
+}
+
+.campo h4 {
+    margin: 0;
+}
+
 
 .button_atualizar {
     display: flex;
     justify-content: flex-end; /* Empurra o conteúdo (o botão) para a direita */
     width: 100%;               /* Garante que a div ocupe toda a largura disponível */
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 [hidden] {
     display: none !important;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 850px) {
+
+    .container_surdo {
+        grid-template-areas:
+            "foto"
+            "informacao";
+
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 30px 0;
+    }
+
+    .foto img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .container_inf_surdo {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .linha {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .container_inf_surdo {
+        padding: 20px;
+    }
 }
 
 
@@ -589,4 +759,295 @@ select:focus {
 }
 
 
+
+/* AJUSTES EXCLUSIVOS DA PÁGINA DE SENHA */
+
+.body-cadastro3 {
+    padding: 260px 40px 50px;
+    justify-content: flex-start;
+}
+
+/* LOGO */
+.body-cadastro3 .logo_cadastro3 {
+    position: absolute;
+    top: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    margin: 0;
+    z-index: 2;
+}
+
+/* CONTAINER */
+.body-cadastro3 .container_cadastro {
+    width: 100%;
+    max-width: 680px;
+    padding: 35px 45px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* FORMULÁRIO */
+.body-cadastro3 .formulario {
+    width: 100%;
+}
+
+.body-cadastro3 .formulario h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.body-cadastro3 .formulario h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* CAMPOS */
+.body-cadastro3 .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.body-cadastro3 .label_senha {
+    margin-left: 0;
+    text-align: left;
+}
+
+.body-cadastro3 .input_senha {
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    font-size: 15px;
+}
+
+/* BOTÃO */
+.body-cadastro3 .button1 {
+    display: block;
+    margin: 30px auto 0;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+
+    .body-cadastro3 .container_cadastro {
+        padding: 30px 20px;
+    }
+
+    .body-cadastro3 .logo_cadastro3 {
+        width: 145px;
+    }
+
+}
+
+
+/* CADASTRO DO INTERPRETE - PRIMEIRA PAGINA */
+
+.body_interpretes {
+    margin: 0;
+    min-height: 100vh;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: relative;
+    box-sizing: border-box;
+
+    padding: 220px 20px 50px;
+
+    font-family: Arial, sans-serif;
+}
+
+/* LOGO */
+
+.body_interpretes .logo_interprete {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 200px;
+    height: auto;
+
+    margin: 0;
+    z-index: 2;
+}
+
+/* CONTAINER */
+
+.body_interpretes .container_cadastro_interpretes {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+    padding: 35px 40px;
+
+    box-sizing: border-box;
+    border-radius: 15px;
+
+    position: relative;
+}
+
+/* TITULOS */
+
+.body_interpretes #formInterprete1 h1 {
+    text-align: center;
+    font-size: 34px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.body_interpretes #formInterprete1 h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ORGANIZAÇÃO DOS CAMPOS */
+
+.body_interpretes #formInterprete1 .linha {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px 25px;
+    margin-bottom: 25px;
+}
+
+.body_interpretes #formInterprete1 .campo {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    gap: 8px;
+}
+
+/* INPUTS E SELECT */
+
+.body_interpretes #formInterprete1 .campo input,
+.body_interpretes #formInterprete1 .campo select {
+
+    width: 100%;
+    min-width: 0;
+
+    padding: 14px;
+    box-sizing: border-box;
+
+    border-radius: 100px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+/* FOCO */
+
+.body_interpretes #formInterprete1 input:focus,
+.body_interpretes #formInterprete1 select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* BOTÃO */
+
+.body_interpretes #formInterprete1 button {
+    display: block;
+    margin: 30px auto 0;
+
+    padding: 13px 45px;
+
+    border: none;
+    border-radius: 100px;
+
+    background: linear-gradient(230deg, #0E3A99, #06CAFE);
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.body_interpretes #formInterprete1 button:hover {
+    opacity: 0.85;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+    .body_interpretes {
+        padding: 190px 15px 35px;
+    }
+
+    .body_interpretes .logo_interprete {
+        width: 145px;
+    }
+
+    .body_interpretes .container_cadastro_interpretes {
+        padding: 25px 15px;
+    }
+
+    .body_interpretes #formInterprete1 h1 {
+        font-size: 27px;
+    }
+
+    .body_interpretes #formInterprete1 .linha {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+}
+
+
+/* SEGUNDA PAGINA - ENDERECO DO INTERPRETE */
+
+.body_interpretes #formInterprete2 .linha {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 30px;
+    row-gap: 25px;
+    margin-bottom: 28px;
+}
+
+/* CAMPOS */
+.body_interpretes #formInterprete2 .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* INPUTS */
+.body_interpretes #formInterprete2 .campo input,
+.body_interpretes #formInterprete2 .campo-complemento input {
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    font-size: 15px;
+}
+
+/* COMPLEMENTO */
+.body_interpretes #formInterprete2 .campo-complemento {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* BOTÕES */
+.body_interpretes #formInterprete2 button {
+    margin: 10px;
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+    .body_interpretes #formInterprete2 .linha {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+}
 
